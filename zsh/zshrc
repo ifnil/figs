@@ -1,0 +1,55 @@
+# VARIABLES
+# ENABLE_CORRECTION="true"
+COMPLETION_WAITING_DOTS="true"
+
+CARGO_PATH="$HOME/.cargo/bin"
+GO_BIN_PATH="$HOME/go/bin"
+LOCAL_BIN_PATH="$HOME/.local/bin"
+DOTNET_PATH="$HOME/.dotnet"
+DOTNET_TOOLS_PATH="$HOME/.dotnet/tools"
+USER_PATH="$DOTNET_PATH:$DOTNET_TOOLS_PATH:$CARGO_PATH:$GO_BIN_PATH:$LOCAL_BIN_PATH"
+
+# EXPORTS
+export PATH="$USER_PATH:$PATH"
+export ZSH="$HOME/.config/oh-my-zsh"
+export ZSH_CUSTOM="$HOME/.config/oh-my-zsh/custom"
+export EDITOR="/usr/bin/nvim"
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
+export QT_QPA_PLATFORM="wayland"
+
+# PLUGINS
+plugins=(
+  git fzf docker docker-compose
+  eza colorize kitty urltools z
+  zsh-autosuggestions zsh-syntax-highlighting
+  zsh-completions
+)
+
+# ALIASES
+alias setwall="swww img"
+alias ssh="kitten ssh"
+alias jq="jq -C"
+alias qmlls="qmlls6"
+
+function vpn() {
+  case "$1" in
+    "up")
+      wg-quick up vpn ;;
+    "down")
+      wg-quick down vpn ;;
+    *)
+      echo "unknown" ;;
+  esac
+}
+
+function mcd() {
+  mkdir -p "$1" && cd "$1"
+}
+
+# ZSH stuff :D
+fpath+=${ZSH_CUSTOM:-${ZSH:-~/.config/oh-my-zsh}/custom}/plugins/zsh-completions/src
+autoload -U compinit && compinit
+source $ZSH/oh-my-zsh.sh
+
+eval "$(starship init zsh)"
+eval "$(ssh-agent -s)"
