@@ -14,6 +14,10 @@ _G.theme = {
 	},
 }
 
+vim.api.nvim_set_hl(0, "WhichKeyNormal", { bg = "#000000" })
+vim.api.nvim_set_hl(0, "WhichKeyBorder", { bg = "#000000" })
+vim.api.nvim_set_hl(0, "WhichKeyTitle", { bg = "#000000" })
+
 -- local colors = _G.theme.colors
 --
 -- local custom_theme = {

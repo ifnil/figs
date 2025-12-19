@@ -1,0 +1,10 @@
+-- -- custom
+-- vim.lsp.enable("bashls")
+-- vim.lsp.enable("lua_ls")
+--
+-- -- lspconfig default (:h lspconfig-all)
+-- vim.lsp.enable("asm_lsp") -- cargo install asm-lsp
+-- vim.lsp.enable("rust-analyzer")
+-- vim.lsp.enable("clangd")
+-- vim.lsp.enable("angularls")
+-- vim.lsp.enable("arduino_language_server") -- go install github.com/arduino/arduino-language-server@latest

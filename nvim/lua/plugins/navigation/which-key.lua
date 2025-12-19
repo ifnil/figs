@@ -6,6 +6,9 @@ return {
 			notify = true,
 			preset = "helix",
 			-- sort = { "manual" },
+			win = {
+				border = "single",
+			},
 		},
 	},
 }

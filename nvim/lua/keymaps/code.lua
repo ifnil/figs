@@ -7,6 +7,10 @@ wk.add({
 	{ "<leader>cs", "<cmd>Trouble symbols<cr>", desc = "symbols" },
   { "<leader>cy", function() require("snacks").picker.lsp_symbols() end, desc = "symbols (snacks)" },
   { "<leader>sS", function() require("snacks").picker.lsp_workspace_symbols() end, desc = "lsp workspace symbols" },
+  { "<leader>ca", vim.lsp.buf.code_action, desc = "code action", mode = { "n", "x" }},
+  { "<leader>cc", vim.lsp.codelens.run, desc = "run codelens", mode = { "n", "x" }},
+  { "<leader>cC", vim.lsp.codelens.refresh, desc = "refresh & display codelens", mode = { "n" }},
+  { "<leader>cr", vim.lsp.buf.rename, desc = "rename" },
 })
 
 -- stylua: ignore

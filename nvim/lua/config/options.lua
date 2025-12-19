@@ -36,6 +36,7 @@ vim.opt.encoding = "utf-8"
 vim.opt.fileencoding = "utf-8"
 vim.opt.pumheight = 0
 vim.opt.clipboard = "unnamedplus"
+vim.opt.winborder = "single"
 vim.opt.sessionoptions = {
 	"buffers",
 	"curdir",

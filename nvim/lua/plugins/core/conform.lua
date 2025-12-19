@@ -19,12 +19,14 @@ return {
 		formatters_by_ft = {
 			["*"] = { "codespell" },
 			["_"] = { "trim_whitespace" },
+
 			lua = { "stylua" },
 			python = { "isort", "black" },
 			rust = { "rustfmt" },
 			javascript = { "prettierd", "prettier", stop_after_first = true },
 			markdown = { "markdownfmt" },
 			c = { "clang-format" },
+			sh = { "shfmt" },
 		},
 	},
 }

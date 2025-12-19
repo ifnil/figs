@@ -20,11 +20,9 @@ vim.g.maplocalleader = "\\"
 
 require("lazy").setup({
 	spec = {
-		-- { "LazyVim/LazyVim", import = "lazyvim.plugins" },
 		{ import = "plugins.ui" },
 		{ import = "plugins.core" },
 		{ import = "plugins.navigation" },
-		{ import = "plugins.lang" },
 	},
 	install = { colorscheme = { "thorn" } },
 	checker = { enabled = true },
