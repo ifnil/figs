@@ -5,6 +5,7 @@ return {
 		opts = {
 			notify = true,
 			preset = "helix",
+			-- sort = { "manual" },
 		},
 	},
 }

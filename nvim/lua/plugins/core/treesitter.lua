@@ -33,10 +33,9 @@ return {
 				"vimdoc",
 				"xml",
 				"yaml",
+				"sql",
 			},
 		},
 	},
-	{
-		"nvim-treesitter/nvim-treesitter-textobjects",
-	},
+	{ "nvim-treesitter/nvim-treesitter-textobjects" },
 }

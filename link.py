@@ -1,0 +1,59 @@
+#!/usr/bin/env python3
+
+import sys
+import os
+import argparse
+from pathlib import Path
+
+parser = argparse.ArgumentParser()
+parser.add_argument("name", help="Name of config to link (i.e. nvim)")
+args = parser.parse_args()
+
+configs = {}
+ignore_list = ["scripts", ".git"]
+current_path = Path(".").absolute()
+config_path = Path.home().joinpath(".config")
+
+entries = Path(".").iterdir()
+for entry in entries:
+    if entry.name in ignore_list or not entry.is_dir():
+        continue
+    configs[entry.name] = entry
+
+# validate chosen config
+if args.name not in configs:
+    print("not a valid configuration directory")
+    sys.exit()
+
+target = configs[args.name]
+target_path = config_path.joinpath(target)
+
+# check if existing config directory exists
+if target_path.exists():
+    print(f"configuration already exists, renaming to {target}.bak")
+    cont = input("continue? (y/n) ")
+    if cont == "n":
+        print("exiting")
+        sys.exit()
+    elif cont == "y":
+        backup_path = str(target_path.absolute()) + ".bak"
+        try:
+            os.rename(target_path, backup_path)
+        except FileExistsError:
+            print(f"{backup_path} already exists. exiiting")
+            sys.exit()
+        except Exception as e:
+            print(f"an error occurred: {e}")
+            sys.exit()
+    else:
+        print("unkown input, exiting")
+        sys.exit()
+
+# now we can symlink the config
+try:
+    target_path.symlink_to(target.absolute())
+except Exception as e:
+    print(f"an error occurred while trying to symlink: {e}")
+    print(f"target path: {target_path}")
+    print(f"config path: {target.absolute()}")
+print("done!")
