@@ -20,7 +20,7 @@ map({ "n" }, "<leader>e", function()
 end, { desc = "open file tree" })
 
 map("n", "<leader><space>", "<cmd>FzfLua files<cr>", { desc = "find files" })
-map("n", "<leader>N", "<cmd>NoiceAll<cr>", { desc = "notifications" })
+map("n", "<leader>N", "<cmd>NoiceFzf<cr>", { desc = "notifications" })
 map({ "n", "v", "x" }, "<Esc>", "<cmd>noh<cr><Esc>", { desc = "return to normal", noremap = true })
 
 map("n", "<A-j>", "<cmd>execute 'move .+' . v:count1<cr>==", { desc = "Move Down" })

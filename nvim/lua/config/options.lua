@@ -37,6 +37,7 @@ vim.opt.fileencoding = "utf-8"
 vim.opt.pumheight = 0
 vim.opt.clipboard = "unnamedplus"
 vim.opt.winborder = "single"
+vim.opt.mousemoveevent = true
 vim.opt.sessionoptions = {
 	"buffers",
 	"curdir",

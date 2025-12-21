@@ -14,7 +14,12 @@ return {
 	end,
 	opts = {
 		options = {
-			separator_style = "thick",
+			separator_style = "thin",
+			hover = {
+				enabled = true,
+				delay = 200,
+				reveal = { "close" },
+			},
 			close_command = function(n)
 				Snacks.bufdelete(n)
 			end,
