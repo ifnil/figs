@@ -152,6 +152,19 @@ Item {
                 rightPad: 8
             }
 
+            SystemTrayModule {
+                id: systemTray
+                theme: panel.theme
+                Layout.alignment: Qt.AlignVCenter
+            }
+
+            BarSeparator {
+                separatorColor: theme.colMuted
+                leftPad: 8
+                rightPad: 8
+                visible: systemTray.hasItems
+            }
+
             ClockLabel {
                 theme: panel.theme
             }
