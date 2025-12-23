@@ -15,10 +15,6 @@ map({ "n", "x", "o" }, "s", function()
 	require("flash").jump()
 end, { desc = "flash jump" })
 
-map({ "n" }, "<leader>e", function()
-	require("snacks").explorer()
-end, { desc = "open file tree" })
-
 map("n", "<leader><space>", "<cmd>FzfLua files<cr>", { desc = "find files" })
 map("n", "<leader>N", "<cmd>NoiceFzf<cr>", { desc = "notifications" })
 map({ "n", "v", "x" }, "<Esc>", "<cmd>noh<cr><Esc>", { desc = "return to normal", noremap = true })

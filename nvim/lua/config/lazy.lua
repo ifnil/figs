@@ -23,6 +23,7 @@ require("lazy").setup({
 		{ import = "plugins.ui" },
 		{ import = "plugins.core" },
 		{ import = "plugins.navigation" },
+		{ import = "plugins.lang" },
 	},
 	install = { colorscheme = { "thorn" } },
 	checker = { enabled = true },

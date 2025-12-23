@@ -11,5 +11,6 @@ _G.theme = {
 		red = "#D2696C",
 		yellow = "#FFD7AA",
 		black = "#000000",
+		white = "#ffffff",
 	},
 }
