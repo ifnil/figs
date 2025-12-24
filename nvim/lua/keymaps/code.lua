@@ -11,6 +11,7 @@ wk.add({
   { "<leader>cc", vim.lsp.codelens.run, desc = "run codelens", mode = { "n", "x" }},
   { "<leader>cC", vim.lsp.codelens.refresh, desc = "refresh & display codelens", mode = { "n" }},
   { "<leader>cr", vim.lsp.buf.rename, desc = "rename" },
+  { "<leader>cF", function() require("conform").format({ formatters = { "injected" }, timeout_ms = 3000 }) end, desc = "format injected langs"}
 })
 
 -- stylua: ignore
