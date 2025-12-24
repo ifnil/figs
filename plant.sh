@@ -12,7 +12,7 @@ function delete_existing() {
 }
 
 valid_figs=()
-exclude=("scripts" ".git")
+exclude=("scripts" ".git" "zsh")
 configurations=(*/)
 
 # get the valid configs

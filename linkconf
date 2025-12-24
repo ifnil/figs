@@ -14,7 +14,7 @@ parser.add_argument("name", help="Name of config to link (i.e. nvim)")
 args = parser.parse_args()
 
 configs = {}
-ignore_list = ["scripts", ".git"]
+ignore_list = ["scripts", ".git", "zsh"]
 current_path = Path(".").absolute()
 config_path = Path.home().joinpath(".config")
 
