@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 
+# why bother with stow or chezmoi
+# i'm a big girl i can manage absolute symlinks by myself
+# ... maybe ...
+
 import sys
 import os
 import argparse
@@ -14,6 +18,7 @@ ignore_list = ["scripts", ".git"]
 current_path = Path(".").absolute()
 config_path = Path.home().joinpath(".config")
 
+# grab the available entries
 entries = Path(".").iterdir()
 for entry in entries:
     if entry.name in ignore_list or not entry.is_dir():
