@@ -8,8 +8,7 @@ return {
 					pick = function(cmd, opts)
 						return LazyVim.pick(cmd, opts)()
 					end,
-          -- stylua: ignore
-          header = headers.v_mire_2,
+					header = headers.in_rng(),
 					---@type snacks.dashboard.Item[]
 					keys = {
 						{
