@@ -8,7 +8,7 @@ function make_backup() {
 
 function delete_existing() {
   echo "would you like to delete the existing configuration?"
-  gum confirm && rm -rf "$1" || (echo "okay then!" && exit 0)
+  gum confirm --default=false && rm -rf "$1" || (echo "okay then!" && exit 0)
 }
 
 valid_figs=()
