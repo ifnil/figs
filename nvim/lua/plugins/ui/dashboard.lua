@@ -17,7 +17,7 @@ return {
 							desc = "find file",
 							action = ":lua Snacks.dashboard.pick('files')",
 						},
-						{ icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
+						{ icon = " ", key = "n", desc = "new file", action = ":ene | startinsert" },
 						{
 							icon = " ",
 							key = "g",
