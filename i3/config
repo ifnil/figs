@@ -7,10 +7,11 @@ exec --no-startup-id gentoo-pipewire-launcher &
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id nm-applet
 exec --no-startup-id feh --bg-scale ~/.config/wallpaper
+exec --no-startup-id quickshell -c "$HOME/.config/quickshell"
 
 exec_always --no-startup-id picom -b
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id autotiling
+# exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 set $refresh_i3status killall -SIGUSR1 i3status
 
@@ -47,6 +48,8 @@ bindsym Shift+XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_SINK@   1%-
 bindsym $mod+Return  exec /usr/bin/kitty
 bindsym $mod+Shift+q kill
 bindsym $mod+d       exec "rofi -show combi -combi-modi 'drun,run' -show-icons -lines 10"
+
+bindsym Mod1+Shift+4 exec "maim -s ~/pictures/screenshots/maim-$(date +%Y%m%d_%H%M%s).png | xclip -selection clipboard -t image/png"
 
 # change focus
 bindsym $mod+$left  focus left

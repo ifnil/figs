@@ -2,20 +2,25 @@
 # ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 
+# EXPORTS
+export ZSH="$HOME/.config/oh-my-zsh"
+export ZSH_CUSTOM="$HOME/.config/oh-my-zsh/custom"
+export EDITOR="/usr/bin/nvim"
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
+export QT_QPA_PLATFORM="xcb"
+export PYENV_ROOT="$HOME/.local/src/pyenv"
+
+# PATH CONFIG
 CARGO_PATH="$HOME/.cargo/bin"
 GO_BIN_PATH="$HOME/go/bin"
 LOCAL_BIN_PATH="$HOME/.local/bin"
 DOTNET_PATH="$HOME/.dotnet"
 DOTNET_TOOLS_PATH="$HOME/.dotnet/tools"
-USER_PATH="$DOTNET_PATH:$DOTNET_TOOLS_PATH:$CARGO_PATH:$GO_BIN_PATH:$LOCAL_BIN_PATH"
+PYENV_PATH="$PYENV_ROOT/bin"
+USER_PATH="$DOTNET_PATH:$DOTNET_TOOLS_PATH:$CARGO_PATH:$GO_BIN_PATH:$PYENV_PATH:$LOCAL_BIN_PATH"
 
-# EXPORTS
 export PATH="$USER_PATH:$PATH"
-export ZSH="$HOME/.config/oh-my-zsh"
-export ZSH_CUSTOM="$HOME/.config/oh-my-zsh/custom"
-export EDITOR="/usr/bin/nvim"
-export DOTNET_CLI_TELEMETRY_OPTOUT=1
-export QT_QPA_PLATFORM="wayland"
+
 
 # PLUGINS
 plugins=(
@@ -54,3 +59,4 @@ source $ZSH/oh-my-zsh.sh
 
 eval "$(starship init zsh)"
 eval "$(ssh-agent -s)"
+eval "$(pyenv init - zsh)"

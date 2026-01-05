@@ -1,52 +1,58 @@
-import Quickshell
-import Quickshell.Wayland
-import QtQuick
-import QtQuick.Layouts
-import Quickshell.Io
-import Quickshell.Hyprland
+import Quickshell;
+import Quickshell.Io;
+import QtQuick;
+import QtQuick.Layouts;
+import Quickshell.Services.SystemTray;
+import Quickshell.Services.UPower;
 
-ShellRoot {
-    id: root
+import qs.Widgets as Widgets;
 
-    Theme {
-        id: uiTheme
-    }
-    SystemStats {
-        id: systemStats
-    }
-    HyprStatus {
-        id: hyprStatus
-    }
+Scope {
+  id: root;
 
-    Variants {
-        model: Quickshell.screens
+  Theme { id: theme; }
 
-        PanelWindow {
-            property var modelData
-            screen: modelData
+  Variants {
+    model: Quickshell.screens;
+    delegate: Component {
+      PanelWindow {
+        required property var modelData;
 
-            anchors {
-                top: true
-                left: true
-                right: true
-            }
+        screen: modelData;
+        implicitHeight: 30;
 
-            implicitHeight: 30
-            color: "transparent"
+        color: "transparent";
 
-            margins {
-                top: 0
-                bottom: 0
-                left: 0
-                right: 0
-            }
-
-            PanelContent {
-                anchors.fill: parent
-                theme: uiTheme
-                stats: systemStats
-                hypr: hyprStatus
-            }
+        anchors {
+          top: true;
+          left: true;
+          right: true;
         }
+
+        margins {
+          top: 5;
+          left: 5;
+          right: 5;
+        }
+
+        RowLayout {
+          id: layout;
+          width: parent.width;
+          height: parent.height;
+
+          anchors {
+            fill: parent;
+            margins: 5;
+          }
+
+          Widgets.Workspaces {}
+          Widgets.Spacer {}
+          Widgets.Volume {}
+          Widgets.Battery {}
+          Widgets.Date {}
+          Widgets.Clock {}
+        }
+      }
     }
+  }
 }
