@@ -8,3 +8,5 @@
 -- vim.lsp.enable("clangd")
 -- vim.lsp.enable("angularls")
 -- vim.lsp.enable("arduino_language_server") -- go install github.com/arduino/arduino-language-server@latest
+
+vim.lsp.enable("gdscript")
