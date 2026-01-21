@@ -4,6 +4,7 @@ COMPLETION_WAITING_DOTS="true"
 ZSH_COMPDUMP="${HOME}/.cache/zsh/zcompdump-${ZSH_VERSION}"
 
 # EXPORTS
+export HOSTNAME=$(hostnamectl hostname | tr -d '\n')
 export ZSH="$HOME/.config/oh-my-zsh"
 export ZSH_CUSTOM="$HOME/.config/oh-my-zsh/custom"
 export EDITOR="/usr/bin/nvim"
@@ -12,7 +13,7 @@ export QT_QPA_PLATFORM="xcb"
 export PYENV_ROOT="$HOME/.local/src/pyenv"
 
 # PATH CONFIG
-CARGO_PATH="$HOME/.cargo/bin"
+CARGO_PATH="$HOME/.local/cargo/bin"
 GO_BIN_PATH="$HOME/go/bin"
 LOCAL_BIN_PATH="$HOME/.local/bin"
 DOTNET_PATH="$HOME/.dotnet"
