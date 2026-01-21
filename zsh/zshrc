@@ -3,8 +3,16 @@
 COMPLETION_WAITING_DOTS="true"
 ZSH_COMPDUMP="${HOME}/.cache/zsh/zcompdump-${ZSH_VERSION}"
 
+# system context
+source /etc/os-release
+
 # EXPORTS
-export HOSTNAME=$(hostnamectl hostname | tr -d '\n')
+if [[ "$ID" == "arch" ]]; then
+  export HOSTNAME=$(hostnamectl hostname | tr -d '\n')
+elif [[ "$ID" == "gentoo" ]]; then
+  export HOSTNAME=$(hostname | tr -d '\n')
+fi
+
 export ZSH="$HOME/.config/oh-my-zsh"
 export ZSH_CUSTOM="$HOME/.config/oh-my-zsh/custom"
 export EDITOR="/usr/bin/nvim"
@@ -22,7 +30,6 @@ PYENV_PATH="$PYENV_ROOT/bin"
 USER_PATH="$DOTNET_PATH:$DOTNET_TOOLS_PATH:$CARGO_PATH:$GO_BIN_PATH:$PYENV_PATH:$LOCAL_BIN_PATH"
 
 export PATH="$USER_PATH:$PATH"
-
 
 # PLUGINS
 plugins=(
@@ -54,7 +61,6 @@ function mcd() {
   mkdir -p "$1" && cd "$1"
 }
 
-# ZSH stuff :D
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.config/oh-my-zsh}/custom}/plugins/zsh-completions/src
 [[ -d $(dirname "$ZSH_COMPDUMP") ]] || mkdir -p $(dirname "$ZSH_COMPDUMP")
 autoload -U compinit && compinit

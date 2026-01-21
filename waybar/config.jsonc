@@ -11,32 +11,33 @@
     "bluetooth",
     "wireplumber",
     "battery",
-    "clock",
+    "clock"
   ],
 
   "hyprland/workspaces": {
     "format": "{icon}",
     "format-icons": {
-      "active": "",
+      "active":  "",
       "default": "",
-    },
+      "empty":   ""
+    }
   },
 
   "hyprland/language": {
-    "format": "󰌌 {}",
+    "format":    "󰌌 {}",
     "format-en": "en",
-    "format-ru": "ru",
+    "format-ru": "ru"
   },
 
   "battery": {
     "interval": 60,
     "states": {
       "warning": 30,
-      "critical": 15,
+      "critical": 15
     },
     "format": "{icon} {capacity}%",
     "format-icons": ["", "", "", "", ""],
-    "max-length": 25,
+    "max-length": 25
   },
 
   "clock": {
@@ -53,12 +54,12 @@
         "days": "<span color='#ecc6d9'><b>{}</b></span>",
         "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
         "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
-        "today": "<span color='#ff6699'><b><u>{}</u></b></span>",
-      },
+        "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+      }
     },
     "actions": {
-      "on-click-right": "mode",
-    },
+      "on-click-right": "mode"
+    }
   },
 
   "network": {
@@ -79,17 +80,17 @@
     "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
     "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
-    "on-click": "kitty ~/figs/waybar/scripts/bluetooth-menu.sh",
+    "on-click": "kitty ~/figs/waybar/scripts/bluetooth-menu.sh"
   },
 
   "wireplumber": {
     "format": "{icon} {volume}%",
     "format-muted": " ",
     "on-click": "kitty pulsemixer",
-    "format-icons": ["", "", " "],
+    "format-icons": ["", "", " "]
   },
 
   "tray": {
-    "spacing": 10,
-  },
+    "spacing": 10
+  }
 }
