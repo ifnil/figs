@@ -57,19 +57,9 @@ tooltip {
   color: #ffffff;
 }
 
-#tray {
-  /* background-color: #d4be98; */
-  /* border: 2px solid #c7ab7a; */
-}
-
-#battery {
-  /* color: #6c782e; */
-}
-
 #cpu.critical,
 #memory.critical {
   background-color: #ddc7a1;
-  border: 2px solid #c7ab7a;
   color: #c14a4a;
 }
 
@@ -78,6 +68,7 @@ tooltip {
 #battery.urgent {
   background-color: #ddc7a1;
   color: #c14a4a;
+  border-radius: 4px;
 }
 
 #bluetooth {}

@@ -1,0 +1,6 @@
+configuration {
+  markup: true;
+  combi-display-format: "<span foreground='#55786a'>{mode}</span> {text}";
+}
+
+@theme "./tiramisu.rasi"
