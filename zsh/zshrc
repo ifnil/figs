@@ -36,7 +36,7 @@ plugins=(
   git fzf docker docker-compose
   eza colorize kitty urltools z
   zsh-autosuggestions zsh-syntax-highlighting
-  zsh-completions ssh-agent
+  zsh-completions ssh-agent colored-man-pages
 )
 
 # ALIASES
