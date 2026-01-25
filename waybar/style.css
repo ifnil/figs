@@ -13,8 +13,10 @@ window#waybar {
 }
 
 tooltip {
-  background-color: #1d2021;
-  border: 2px solid #7c6f64;
+  background-color: #000;
+  border: 2px solid #489c7a;
+  font-family: "GohuFont uni14 Nerd Font Propo";
+  padding: 10px;
 }
 
 #clock,
@@ -53,7 +55,6 @@ tooltip {
 }
 
 #clock {
-  /* background-color: #303536; */
   color: #ffffff;
 }
 

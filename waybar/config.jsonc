@@ -43,9 +43,9 @@
   "clock": {
     "format": "{:%H:%M}",
     "format-alt": "{:%A, %B %d, %Y (%R)}",
-    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "tooltip-format": "<tt><big>{calendar}</big></tt>",
     "calendar": {
-      "mode": "year",
+      "mode": "months",
       "mode-mon-col": 3,
       "weeks-pos": "right",
       "on-scroll": 1,
@@ -53,7 +53,7 @@
         "months": "<span color='#ffead3'><b>{}</b></span>",
         "days": "<span color='#ecc6d9'><b>{}</b></span>",
         "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
-        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+        "weekdays": "<span color='#23b87b'><b>{}</b></span>",
         "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
       }
     },
@@ -65,9 +65,9 @@
   "network": {
     "format": "",
     "format-ethernet": "{ipaddr}/{cidr} 󰊗",
-    "format-disconnected": "󱛅",
+    "format-disconnected": "󰤯",
     "tooltip-format": "{ifname} via {gwaddr} 󰊗",
-    "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%) \n{ipaddr}",
     "tooltip-format-ethernet": "{ifname} ",
     "tooltip-format-disconnected": "Disconnected",
     "max-length": 50,
@@ -87,7 +87,8 @@
     "format": "{icon} {volume}%",
     "format-muted": " ",
     "on-click": "kitty pulsemixer",
-    "format-icons": ["", "", " "]
+    "format-icons": ["", "", " "],
+    "tooltip-format": "{node_name}"
   },
 
   "tray": {
