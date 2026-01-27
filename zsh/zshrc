@@ -45,6 +45,7 @@ alias ssh="kitten ssh"
 alias jq="jq -C"
 alias qmlls="qmlls6"
 alias cj="z"
+alias makeport="nvim /etc/portage/make.conf"
 
 function vpn() {
   case "$1" in
