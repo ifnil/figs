@@ -10,3 +10,5 @@
 -- vim.lsp.enable("arduino_language_server") -- go install github.com/arduino/arduino-language-server@latest
 
 vim.lsp.enable("gdscript")
+vim.lsp.enable("postgres_lsp")
+vim.lsp.enable("sqlls")

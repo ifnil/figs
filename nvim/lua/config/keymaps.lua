@@ -32,7 +32,11 @@ map({ "n", "t" }, "<C-/>", function() require("snacks").terminal() end, { desc =
 -- stylua: ignore
 map({ "n", "t" }, "<C-_>", function() require("snacks").terminal() end, { desc = "terminal" })
 
+map("v", "<", "<gv")
+map("v", ">", ">gv")
+
 require("keymaps.nogroup")
+require("keymaps.database")
 require("keymaps.buffer")
 require("keymaps.code")
 require("keymaps.git")

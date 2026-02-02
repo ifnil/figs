@@ -4,6 +4,7 @@ wk.add({
 	{ "<leader>u", group = "ui/toggles" },
 	{ "<leader>d", group = "debug" },
 	{ "<leader>dp", group = "profiler" },
+	{ "<leader>uR", "<cmd>RenderMarkdown toggle<cr>", desc = "render markdown" },
 })
 
 Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>us")

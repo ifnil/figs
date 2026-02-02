@@ -67,3 +67,9 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 		end
 	end,
 })
+
+-- Autocmd to set filetype for .sql files to plsql
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+	pattern = { "*.sql" },
+	command = "setf plsql",
+})

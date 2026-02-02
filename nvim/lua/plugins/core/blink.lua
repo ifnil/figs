@@ -25,6 +25,8 @@ return {
 		keymap = {
 			preset = "enter",
 			["<C-y>"] = { "select_and_accept" },
+			["<Tab>"] = { "snippet_forward", "fallback" },
+			["<S-Tab>"] = { "snippet_backward", "fallback" },
 		},
 
 		appearance = {
@@ -35,6 +37,12 @@ return {
 
 		sources = {
 			default = { "lsp", "path", "snippets", "buffer" },
+			per_filetype = {
+				sql = { "snippets", "dadbod", "buffer" },
+			},
+			providers = {
+				dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
+			},
 		},
 
 		fuzzy = { implementation = "prefer_rust_with_warning" },
