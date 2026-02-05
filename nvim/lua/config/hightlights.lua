@@ -1,6 +1,19 @@
-local colors = vim.g.theme
+local colors = vim.g.mein_theme
 
+vim.api.nvim_set_hl(0, "Normal", { bg = colors.bg })
+vim.api.nvim_set_hl(0, "NormalNC", { bg = colors.bg })
+vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = colors.bg })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = colors.bg })
+vim.api.nvim_set_hl(0, "FloatNormal", { bg = colors.bg })
 vim.api.nvim_set_hl(0, "FloatBorder", { bg = colors.bg })
+
+vim.api.nvim_set_hl(0, "ColorColumn", { bg = colors.bg })
+vim.api.nvim_set_hl(0, "SignColumn", { bg = colors.bg })
+vim.api.nvim_set_hl(0, "SignColumnSB", { bg = colors.bg })
+vim.api.nvim_set_hl(0, "Conceal", { bg = colors.bg })
+vim.api.nvim_set_hl(0, "NonText", { bg = colors.bg })
+vim.api.nvim_set_hl(0, "StatusLine", { bg = colors.bg })
+
 vim.api.nvim_set_hl(0, "Pmenu", { bg = colors.bg })
 
 vim.api.nvim_set_hl(0, "WhichKeyNormal", { bg = colors.bg })
@@ -8,11 +21,10 @@ vim.api.nvim_set_hl(0, "WhichKeyBorder", { bg = colors.bg })
 vim.api.nvim_set_hl(0, "WhichKeyTitle", { bg = colors.bg })
 
 vim.api.nvim_set_hl(0, "SnacksNormal", { bg = colors.bg })
-vim.api.nvim_set_hl(0, "SnacksTitle", { bg = colors.bg })
 vim.api.nvim_set_hl(0, "SnacksPicker", { bg = colors.bg })
 vim.api.nvim_set_hl(0, "SnacksPickerSearch", { bg = colors.bg })
 vim.api.nvim_set_hl(0, "SnacksPickerBoxTitle", { bg = colors.bg })
-vim.api.nvim_set_hl(0, "SnacksPickerInputBorder", { bg = colors.bg, fg = colors.black })
+vim.api.nvim_set_hl(0, "SnacksPickerInputBorder", { bg = colors.bg, fg = colors.fg })
 vim.api.nvim_set_hl(0, "SnacksPickerInputSearch", { bg = colors.bg })
 vim.api.nvim_set_hl(0, "SnacksPickerInputTitle", { bg = colors.bg })
 vim.api.nvim_set_hl(0, "SnacksPickerBorder", { bg = colors.bg })
@@ -33,20 +45,42 @@ vim.api.nvim_set_hl(0, "TelescopePromptPrefix", { bg = colors.bg })
 vim.api.nvim_set_hl(0, "TelescopePreviewWrite", { bg = colors.bg })
 
 vim.api.nvim_set_hl(0, "BufferLineFill", { bg = colors.bg })
-vim.api.nvim_set_hl(0, "BufferLineBufferSelected", { bg = colors.bg })
+vim.api.nvim_set_hl(0, "BufferLineBuffer", { bg = colors.bg })
+vim.api.nvim_set_hl(0, "BufferLineDiagnostic", { bg = colors.bg })
+vim.api.nvim_set_hl(0, "BufferLineDiagnosticVisible", { bg = colors.bg })
+vim.api.nvim_set_hl(0, "BufferLineDiagnosticSelected", { bg = colors.bg })
+vim.api.nvim_set_hl(0, "BufferLineBufferSelected", { fg = colors.fg, bg = colors.bg })
 vim.api.nvim_set_hl(0, "BufferLineCloseButtonSelected", { bg = colors.bg })
 vim.api.nvim_set_hl(0, "BufferLineOffsetSeparator", { fg = colors.bg })
+vim.api.nvim_set_hl(0, "BufferLineBackground", { bg = colors.bg })
+vim.api.nvim_set_hl(0, "BufferLineSeparator", { bg = colors.bg })
+vim.api.nvim_set_hl(0, "BufferLineIndicatorSelected", { bg = colors.bg })
+vim.api.nvim_set_hl(0, "BufferLineModified", { fg = colors.redd, bg = colors.bg })
+vim.api.nvim_set_hl(0, "BufferLineModifiedSelected", { fg = colors.redd, bg = colors.bg })
+vim.api.nvim_set_hl(0, "BufferLineModifiedVisible", { fg = colors.redd, bg = colors.bg })
+vim.api.nvim_set_hl(0, "BufferLineHint", { bg = colors.bg })
+vim.api.nvim_set_hl(0, "BufferLineHintSelected", { bg = colors.bg })
 
 vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = colors.bg })
 vim.api.nvim_set_hl(0, "NeoTreeTabInactive", { bg = colors.bg })
 vim.api.nvim_set_hl(0, "NeoTreeTabSeparatorInactive", { bg = colors.bg })
 vim.api.nvim_set_hl(0, "NeoTreeTabSeparatorActive", { bg = colors.bg })
 
-vim.api.nvim_set_hl(0, "BlinkCmpMenuSelection", { bg = colors.dark })
-vim.api.nvim_set_hl(0, "BlinkCmpKind", { bg = colors.dark })
+vim.api.nvim_set_hl(0, "BlinkCmpMenuSelection", { bg = colors.visual })
+vim.api.nvim_set_hl(0, "BlinkCmpKind", { bg = colors.visual })
 vim.api.nvim_set_hl(0, "BlinkCmpScrollBarThumb", { bg = colors.fg })
 
 vim.api.nvim_set_hl(0, "TroubleNormal", { bg = colors.bg })
 vim.api.nvim_set_hl(0, "TroubleNormalNC", { bg = colors.bg })
 vim.api.nvim_set_hl(0, "TroublePreview", { bg = colors.bg })
 vim.api.nvim_set_hl(0, "TroubleCount", { bg = colors.bg })
+
+local devicons = require("nvim-web-devicons")
+local icons = devicons.get_icons()
+for _, icon in pairs(icons) do
+	if icon.name then
+		vim.api.nvim_set_hl(0, "BufferLineDevIcon" .. icon.name, { bg = colors.bg })
+		vim.api.nvim_set_hl(0, "BufferLineDevIcon" .. icon.name .. "Selected", { bg = colors.bg })
+		vim.api.nvim_set_hl(0, "BufferLineDevIcon" .. icon.name .. "Inactive", { bg = colors.bg })
+	end
+end

@@ -27,6 +27,9 @@ require("lazy").setup({
 	},
 	install = { colorscheme = { "thorn" } },
 	checker = { enabled = true },
+	dev = {
+		path = "~/code/personal/figs",
+	},
 })
 
 vim.cmd("colorscheme thorn")

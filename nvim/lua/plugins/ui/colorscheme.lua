@@ -1,5 +1,34 @@
 return {
+	{
+		"ifnil/gum",
+		dev = true,
+		lazy = false,
+		priority = 1000,
+		opts = {
+			theme = "light",
+			background = "light",
+			transparent = false,
+			terminal = true,
+
+			styles = {
+				keywords = { italic = true, bold = false },
+				comments = { italic = true, bold = false },
+				strings = { italic = true, bold = false },
+
+				diagnostic = {
+					underline = true,
+					error = { highlight = true },
+					hint = { highlight = false },
+					info = { highlight = false },
+					warn = { highlight = false },
+				},
+			},
+		},
+	},
 	{ "mgutz/gosu-colors" },
+	{ "AlessandroYorba/Sierra" },
+	{ "schickele/vim-fruchtig" },
+	{ "daschw/leaf.nvim" },
 	{
 		"sharpchen/Eva-Theme.nvim",
 		lazy = false,
@@ -17,7 +46,6 @@ return {
 			vim.cmd.colorscheme("makurai_dark")
 		end,
 	},
-	{ "schickele/vim-fruchtig" },
 	{
 		"jpwol/thorn.nvim",
 		lazy = false,
@@ -25,7 +53,7 @@ return {
 		opts = {
 			theme = nil,
 			background = "cold",
-			transparent = true,
+			transparent = false,
 			terminal = true,
 
 			styles = {

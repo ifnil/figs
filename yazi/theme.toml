@@ -1,2 +1,14 @@
 [flavor]
 dark = "kanagawa-dragon"
+
+[mode]
+normal_main = { bg = "#000000", fg = "#489c7a" }
+normal_alt = { bg = "#000000", fg = "#489c7a" }
+
+[status]
+overall = { fg = "#489c7a" }
+select_main = { fg = "#489c7a" }
+select_alt = { fg = "#489c7a" }
+
+[which]
+mask = { fg = "#489c7a" }

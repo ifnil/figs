@@ -30,7 +30,6 @@ vim.opt.updatetime = 50
 vim.opt.signcolumn = "yes"
 vim.opt.timeoutlen = 250
 vim.opt.scrolloff = 8
-vim.opt.background = "dark"
 vim.opt.mouse = "a"
 vim.opt.encoding = "utf-8"
 vim.opt.fileencoding = "utf-8"
