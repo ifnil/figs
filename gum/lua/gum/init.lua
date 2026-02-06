@@ -4,24 +4,24 @@ M.version = "0.1.0" -- x-release-please-version
 -- stylua: ignore
 M.default = {
   theme = vim.o.background, -- 'light' or 'dark' - defaults to vim.o.background if unset
-  background = "light",
+  background = "dark",
 
   transparent = false, -- transparent background
-  terminal = false, -- terminal colors
+  terminal = false,    -- terminal colors
 
   styles = {
-    keywords = { italic = true, bold = false },
-    comments = { italic = true, bold = false },
-    strings  = { italic = true, bold = false },
+    keywords   = { italic = true, bold = false },
+    comments   = { italic = true, bold = false },
+    strings    = { italic = true, bold = false },
 
     diagnostic = {
       underline = true, -- if true, flat underlines will be used. Otherwise, undercurls will be used
 
       -- true will apply the bg highlight, false applies the fg highlight
-      error = { highlight = true, },
-      hint  = { highlight = false, },
-      info  = { highlight = false, },
-      warn  = { highlight = false, },
+      error     = { highlight = true, },
+      hint      = { highlight = false, },
+      info      = { highlight = false, },
+      warn      = { highlight = false, },
     },
   },
 

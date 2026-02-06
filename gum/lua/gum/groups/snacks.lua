@@ -46,7 +46,7 @@ function M.get(c, opts)
     SnacksInputBorder = { fg = c.yellow },
     SnacksInputTitle = { fg = c.yellow },
 
-    SnacksPickerInputBorder = { fg = c.fg, bg = c.bg },
+    SnacksPickerInputBorder = { fg = c.bg_visual, bg = c.bg },
     SnacksPickerInputTitle = { fg = c.cyan0, bg = c.bg, bold = true },
     SnacksPickerBoxTitle = { fg = c.cyan0, bg = c.bg_float },
     SnacksPickerSelected = { fg = c.pink },
