@@ -19,6 +19,7 @@ export EDITOR="/usr/bin/nvim"
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export QT_QPA_PLATFORM="xcb"
 export PYENV_ROOT="$HOME/.local/src/pyenv"
+export FIGS="$HOME/figs"
 
 # PATH CONFIG
 CARGO_PATH="$HOME/.local/cargo/bin"
