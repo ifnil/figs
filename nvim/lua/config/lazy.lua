@@ -27,8 +27,8 @@ require("lazy").setup({
   },
   checker = { enabled = true },
   dev = {
-    path = os.getenv("FIGS"),
-  },
+    path = "~/code"
+  }
 })
 
 vim.cmd("colorscheme gum")

@@ -12,3 +12,7 @@
 vim.lsp.enable("gdscript")
 vim.lsp.enable("postgres_lsp")
 vim.lsp.enable("sqlls")
+
+vim.lsp.config("asm_lsp", {
+  filetypes = { 'asm', 's' },
+})
