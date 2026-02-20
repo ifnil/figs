@@ -27,7 +27,7 @@ require("lazy").setup({
   },
   checker = { enabled = true },
   dev = {
-    path = "~/figs",
+    path = os.getenv("FIGS"),
   },
 })
 
