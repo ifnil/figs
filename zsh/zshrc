@@ -1,7 +1,10 @@
+typeset -U path
+
 # VARIABLES
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 ZSH_COMPDUMP="${HOME}/.cache/zsh/zcompdump-${ZSH_VERSION}"
+DISABLE_AUTO_UPDATE=true
 
 # system context
 source /etc/os-release
@@ -10,27 +13,21 @@ source /etc/os-release
 if [[ "$ID" == "arch" ]]; then
   export HOSTNAME=$(hostnamectl hostname | tr -d '\n')
 elif [[ "$ID" == "gentoo" ]]; then
-  export HOSTNAME=$(hostname | tr -d '\n')
+  export HOSTNAME=$(hostname)
 fi
 
 export ZSH="$HOME/.config/oh-my-zsh"
 export ZSH_CUSTOM="$HOME/.config/oh-my-zsh/custom"
 export EDITOR="/usr/bin/nvim"
-export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export QT_QPA_PLATFORM="xcb"
 export PYENV_ROOT="$HOME/.local/src/pyenv"
-export FIGS="$HOME/figs"
+export FIGS="~/figs"
 
 # PATH CONFIG
-CARGO_PATH="$HOME/.local/cargo/bin"
-GO_BIN_PATH="$HOME/go/bin"
-LOCAL_BIN_PATH="$HOME/.local/bin"
-DOTNET_PATH="$HOME/.dotnet"
-DOTNET_TOOLS_PATH="$HOME/.dotnet/tools"
-PYENV_PATH="$PYENV_ROOT/bin"
-USER_PATH="$DOTNET_PATH:$DOTNET_TOOLS_PATH:$CARGO_PATH:$GO_BIN_PATH:$PYENV_PATH:$LOCAL_BIN_PATH"
-
-export PATH="$USER_PATH:$PATH"
+path+=("$HOME/.local/cargo/bin")
+path+=("$HOME/go/bin")
+path+=("$HOME/.local/bin")
+path+=("$PYENV_ROOT/bin")
 
 # PLUGINS
 plugins=(

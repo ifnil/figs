@@ -1,12 +1,9 @@
 return {
   {
     "ifnil/gum",
-    dev = true,
     lazy = false,
     priority = 1000,
     opts = {
-      theme = "dark",
-      background = "dark",
       transparent = false,
       terminal = true,
     },
@@ -15,12 +12,6 @@ return {
   { "AlessandroYorba/Sierra" },
   { "schickele/vim-fruchtig" },
   { "daschw/leaf.nvim" },
-  {
-    "sharpchen/Eva-Theme.nvim",
-    lazy = false,
-    priority = 1000,
-    build = ":EvaCompile",
-  },
   {
     "Skardyy/makurai-nvim",
     config = function()

@@ -22,7 +22,7 @@ return {
       },
     },
     options = {
-      theme = "gum-dark",
+      theme = "gum-light",
     },
   },
 }
