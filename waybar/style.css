@@ -27,13 +27,28 @@ tooltip {
 #language,
 #network,
 #bluetooth,
-#wireplumber {
+#wireplumber,
+#submap {
+  background: #000;
+  border-radius: 4px;
   margin: 6px 6px 6px 0px;
   padding: 2px 8px;
-  color: #ffffff;
+  color: #f6f5f4;
+}
+
+#cpu.critical,
+#memory.critical,
+#battery.warning,
+#battery.critical,
+#battery.urgent {
+  background-color: #ddc7a1;
+  color: #6c383b;
+  border-radius: 4px;
 }
 
 #workspaces {
+  background: #000;
+  border-radius: 4px;
   margin: 6px 0px 6px 6px;
 }
 
@@ -41,35 +56,17 @@ tooltip {
   all: initial;
   min-width: 0;
   padding: 2px 4px;
-  /* color: #6c383b; */
   color: #489c7a;
 }
 
 #workspaces button.focused {
-  /* color: #6c383b; */
+  color: #489c7a;
+}
+
+#workspaces button.active {
   color: #489c7a;
 }
 
 #workspaces button.urgent {
-  background-color: #e78a4e;
+  background-color: #6c383b;
 }
-
-#clock {
-  color: #ffffff;
-}
-
-#cpu.critical,
-#memory.critical {
-  background-color: #ddc7a1;
-  color: #c14a4a;
-}
-
-#battery.warning,
-#battery.critical,
-#battery.urgent {
-  background-color: #ddc7a1;
-  color: #c14a4a;
-  border-radius: 4px;
-}
-
-#bluetooth {}

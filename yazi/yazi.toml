@@ -14,3 +14,6 @@ extract = [
 	{ run = 'ouch d -y %*', desc = "Extract here with ouch", for = "windows" },
 	{ run = 'ouch d -y "$@"', desc = "Extract here with ouch", for = "unix" },
 ]
+
+[tasks]
+image_bound = [ 65535, 65535 ]
