@@ -4,12 +4,18 @@ return {
 	cond = string.find(vim.fn.getcwd(), vim.fn.expand("~/notes")),
 	opts = {
 		legacy_commands = false,
+
+		ui = {
+			enable = false,
+		},
+
 		workspaces = {
 			{
-				name = "personal",
+				name = "work",
 				path = "~/notes/work",
 			},
 		},
+
 		templates = {
 			folder = "_templates",
 			customizations = {
@@ -19,11 +25,22 @@ return {
 				ticket = {
 					notes_subdir = "tickets/",
 				},
+				task = {
+					notes_subdir = "tasks/",
+				},
 			},
 		},
+
+		daily_notes = {
+			enabled = true,
+			folder = "daily",
+			template = "_templates/daily.md",
+		},
+
 		attachments = {
 			folder = "assets",
 		},
+
 		footer = {
 			enabled = false,
 		},
@@ -34,7 +51,7 @@ return {
 			end
 
 			local name = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
-			return name -- "Hulk Hogan" → "hulk-hogan"
+			return name
 		end,
 	},
 }

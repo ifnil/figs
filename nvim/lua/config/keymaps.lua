@@ -11,14 +11,12 @@ map({ "n", "x", "o", "i", "v" }, "<C-s>", function()
 	vim.cmd("write")
 end, { desc = "write file" })
 
-map({ "n", "x", "o" }, "s", function()
-	require("flash").jump()
-end, { desc = "flash jump" })
+-- stylua: ignore
+map({ "n", "x", "o" }, "s", function() require("flash").jump() end, { desc = "flash jump" })
+map({ "n", "v", "x" }, "<Esc>", "<cmd>noh<cr><Esc>", { desc = "return to normal", noremap = true })
 
 map("n", "<leader><space>", "<cmd>FzfLua files<cr>", { desc = "find files" })
 map("n", "<leader>N", "<cmd>NoiceFzf<cr>", { desc = "notifications" })
-map({ "n", "v", "x" }, "<Esc>", "<cmd>noh<cr><Esc>", { desc = "return to normal", noremap = true })
-
 map("n", "<A-j>", "<cmd>execute 'move .+' . v:count1<cr>==", { desc = "Move Down" })
 map("n", "<A-k>", "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = "Move Up" })
 map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
@@ -34,6 +32,11 @@ map({ "n", "t" }, "<C-_>", function() require("snacks").terminal() end, { desc =
 
 map("v", "<", "<gv")
 map("v", ">", ">gv")
+
+vim.keymap.set("v", "<C-b>", ":lua require('markdowny').bold()<cr>", { buffer = 0 })
+vim.keymap.set("v", "<C-i>", ":lua require('markdowny').italic()<cr>", { buffer = 0 })
+vim.keymap.set("v", "<C-k>", ":lua require('markdowny').link()<cr>", { buffer = 0 })
+vim.keymap.set("v", "<C-e>", ":lua require('markdowny').code()<cr>", { buffer = 0 })
 
 require("keymaps.nogroup")
 require("keymaps.database")

@@ -10,7 +10,7 @@ return {
 		picker = { enabled = true },
 		words = { enabled = true },
 		explorer = { enabled = true },
-		terminal = { enabled = true },
+		-- terminal = { enabled = true },
 		image = {
 			enabled = true,
 			resolve = function(path, src)

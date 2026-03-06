@@ -1,12 +1,27 @@
+vim.opt.conceallevel = 0
+
 return {
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
-		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-mini/mini.nvim" }, -- if you use the mini.nvim suite
-		-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.icons' },        -- if you use standalone mini plugins
-		-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
-		---@module 'render-markdown'
-		---@type render.md.UserConfig
-		opts = {},
+		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons", "nvim-mini/mini.nvim" },
+		opts = {
+			checkbox = {
+				enabled = true,
+			},
+
+			heading = {
+				icons = { "» " },
+			},
+
+			bullet = {
+				icons = { "▸ " },
+			},
+
+			code = {
+				border = "thin",
+				conceal_delimiters = false,
+			},
+		},
 	},
 	{
 		"gaoDean/autolist.nvim",
@@ -32,10 +47,6 @@ return {
 			-- cycle list types with dot-repeat
 			vim.keymap.set("n", "<leader>cn", require("autolist").cycle_next_dr, { expr = true })
 			vim.keymap.set("n", "<leader>cp", require("autolist").cycle_prev_dr, { expr = true })
-
-			-- if you don't want dot-repeat
-			-- vim.keymap.set("n", "<leader>cn", "<cmd>AutolistCycleNext<cr>")
-			-- vim.keymap.set("n", "<leader>cp", "<cmd>AutolistCycleNext<cr>")
 
 			-- functions to recalculate list on edit
 			vim.keymap.set("n", ">>", ">><cmd>AutolistRecalculate<cr>")

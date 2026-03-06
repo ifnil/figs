@@ -4,6 +4,7 @@ vim.opt.list = true
 vim.opt.virtualedit = "block"
 vim.opt.cursorline = true
 vim.opt.cmdheight = 2
+vim.opt.conceallevel = 0
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.tabstop = 2
