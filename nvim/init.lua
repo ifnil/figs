@@ -4,7 +4,6 @@ require("config.lazy")
 require("config.keymaps")
 require("config.autocmds")
 require("config.lsp")
-require("config.hightlights")
 
 -- paths to check for project.godot file
 local paths_to_check = { "/", "/../" }
