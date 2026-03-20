@@ -23,10 +23,15 @@ export QT_QPA_PLATFORM="xcb"
 export PYENV_ROOT="$HOME/.local/src/pyenv"
 export FIGS="~/figs"
 
+export ZVM_PATH="$HOME/.local/zvm"
+export ZVM_INSTALL="$HOME/.local/zvm/self"
+
 # PATH CONFIG
 path+=("$HOME/.local/cargo/bin")
 path+=("$HOME/go/bin")
 path+=("$HOME/.local/bin")
+path+=("$HOME/.local/zvm/self")
+path+=("$HOME/.local/zvm/bin")
 path+=("$PYENV_ROOT/bin")
 
 # PLUGINS
@@ -67,3 +72,4 @@ source $ZSH/oh-my-zsh.sh
 
 eval "$(starship init zsh)"
 eval "$(pyenv init - zsh)"
+
