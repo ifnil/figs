@@ -42,6 +42,7 @@ return {
 			handlebars = { "prettier" },
 			json = { "fixjson", "prettier" },
 			xml = { "xmlformatter" },
+			nix = { "alejandra" },
 		},
 	},
 }

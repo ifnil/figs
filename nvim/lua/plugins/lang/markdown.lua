@@ -1,5 +1,3 @@
-vim.opt.conceallevel = 0
-
 return {
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
@@ -9,17 +7,44 @@ return {
 				enabled = true,
 			},
 
+			link = {
+				enabled = true,
+			},
+
 			heading = {
 				icons = { "» " },
+				sign = false,
+				position = "inline",
+				width = "block",
+				left_pad = 1,
+				right_pad = 1,
+			},
+
+			indent = {
+				enabled = false,
 			},
 
 			bullet = {
-				icons = { "▸ " },
+				icons = { "· ", "▸ " },
 			},
 
 			code = {
+				sign = false,
 				border = "thin",
-				conceal_delimiters = false,
+				conceal_deliMiters = false,
+				position = "inline",
+				width = "block",
+				left_pad = 1,
+				right_pad = 1,
+			},
+
+			pipe_table = {
+				preset = "round",
+			},
+
+			-- angry about https://github.com/neovim/neovim/issues/14409 >:(
+			anti_conceal = {
+				enabled = true,
 			},
 		},
 	},
@@ -56,3 +81,14 @@ return {
 		end,
 	},
 }
+
+-- return {
+-- 	"OXY2DEV/markview.nvim",
+-- 	lazy = false,
+-- 	dependencies = { "saghen/blink.cmp" },
+-- 	opts = {
+-- 		preview = {
+-- 			enable = true,
+-- 		},
+-- 	},
+-- }

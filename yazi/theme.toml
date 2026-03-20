@@ -1,9 +1,9 @@
-[flavor]
-dark = "kanagawa-dragon"
+# [flavor]
+# dark = "kanagawa-dragon"
 
-[mode]
-normal_main = { bg = "#f6f5f4", fg = "#489c7a" }
-normal_alt = { bg = "#f6f5f4", fg = "#489c7a" }
+# [mode]
+# normal_main = { bg = "#f6f5f4", fg = "#489c7a" }
+# normal_alt = { bg = "#f6f5f4", fg = "#489c7a" }
 
 # [status]
 # overall = { fg = "#489c7a" }

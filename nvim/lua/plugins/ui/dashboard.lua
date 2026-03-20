@@ -6,7 +6,6 @@ return {
 			dashboard = {
 				preset = {
 					header = headers.rip,
-					---@type snacks.dashboard.Item[]
 					keys = {
 						{
 							icon = " ",

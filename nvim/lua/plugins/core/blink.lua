@@ -36,12 +36,19 @@ return {
 		completion = { documentation = { auto_show = false } },
 
 		sources = {
-			default = { "lsp", "path", "snippets", "buffer" },
+			default = { "lsp", "path", "snippets", "buffer", "easy-dotnet" },
 			per_filetype = {
 				sql = { "snippets", "dadbod", "buffer" },
 			},
 			providers = {
 				dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
+				["easy-dotnet"] = {
+					name = "easy-dotnet",
+					enabled = true,
+					module = "easy-dotnet.completion.blink",
+					score_offset = 10000,
+					async = true,
+				},
 			},
 		},
 

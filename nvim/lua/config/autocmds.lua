@@ -5,34 +5,6 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 	end,
 })
 
--- -- stylua: ignore
--- local filetype_to_servers = {
--- 	sh                      = { "bashls" },
--- 	bash                    = { "bashls" },
--- 	c                       = { "clangd" },
--- 	cpp                     = { "clangd" },
--- 	lua                     = { "lua_ls" },
--- 	rust                    = { "rust_analyzer" },
--- 	yaml                    = { "yamlls" },
--- 	["yaml.docker-compose"] = { "yamlls" },
--- 	["yaml.gitlab"]         = { "yamlls" },
--- 	sql                     = { "sqlls" },
--- 	mysql                   = { "sqlls" },
--- }
---
--- -- Auto-enable LSP servers based on filetype
--- vim.api.nvim_create_autocmd("FileType", {
--- 	group = vim.api.nvim_create_augroup("LspAutoEnable", { clear = true }),
--- 	callback = function(args)
--- 		local servers = filetype_to_servers[args.match]
--- 		if servers then
--- 			for _, server in ipairs(servers) do
--- 				vim.lsp.enable(server, args.buf)
--- 			end
--- 		end
--- 	end,
--- })
-
 -- LspAttach autocmd for custom keybindings and buffer-local settings
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("LspAttachConfig", { clear = true }),

@@ -9,10 +9,19 @@ return {
 			enable = false,
 		},
 
+		frontmatter = {
+			enabled = true,
+			sort = { "id", "aliases", "tags" },
+		},
+
 		workspaces = {
 			{
 				name = "work",
 				path = "~/notes/work",
+			},
+			{
+				name = "dev",
+				path = "~/notes/dev",
 			},
 		},
 

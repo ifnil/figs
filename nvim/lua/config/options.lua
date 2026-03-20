@@ -38,7 +38,8 @@ vim.opt.pumheight = 0
 vim.opt.clipboard = "unnamedplus"
 vim.opt.winborder = "single"
 vim.opt.mousemoveevent = true
-vim.opt.fixeol = false
+-- vim.opt.fixeol = false
+-- vim.opt.textwidth = 120
 vim.opt.sessionoptions = {
 	"buffers",
 	"curdir",

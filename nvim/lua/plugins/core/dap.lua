@@ -9,26 +9,31 @@ return {
 				opts = {},
 			},
 		},
-		config = function()
-			require("config.dap.dap")
-		end,
+		-- config = function()
+		-- 	require("config.dap.dap")
+		-- end,
 	},
 	{
 		"rcarriga/nvim-dap-ui",
 		dependencies = {
 			"mfussenegger/nvim-dap",
 		},
-		config = function()
-			require("config.dap.dap-ui")
-		end,
+		-- config = function()
+		-- 	require("config.dap.dap-ui")
+		-- end,
 	},
 	{ "nvim-neotest/nvim-nio" },
 	{
+		"Issafalcon/neotest-dotnet",
+		lazy = false,
+		dependencies = {
+			"nvim-neotest/neotest",
+		},
+	},
+	{
 		"nvim-neotest/neotest",
 		requires = {
-			{
-				"Issafalcon/neotest-dotnet",
-			},
+			"Issafalcon/neotest-dotnet",
 		},
 		dependencies = {
 			"nvim-neotest/nvim-nio",
@@ -36,12 +41,15 @@ return {
 			"antoinemadec/FixCursorHold.nvim",
 			"nvim-treesitter/nvim-treesitter",
 		},
-	},
-	{
-		"Issafalcon/neotest-dotnet",
-		lazy = false,
-		dependencies = {
-			"nvim-neotest/neotest",
-		},
+		-- opts = {
+		-- 	adapters = {
+		-- 		require("neotest-dotnet")({
+		-- 			dap = {
+		-- 				args = { justMyCode = false },
+		-- 				adapter_name = "netcoredbg",
+		-- 			},
+		-- 		}),
+		-- 	},
+		-- },
 	},
 }

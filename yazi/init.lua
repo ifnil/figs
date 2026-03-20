@@ -1,4 +1,4 @@
--- require("full-border"):setup()
+require("full-border"):setup()
 -- require("starship"):setup()
 
 require("bookmarks"):setup({
