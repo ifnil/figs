@@ -28,7 +28,7 @@ require("lazy").setup({
 	},
 	checker = { enabled = true },
 	dev = {
-		path = "~/code",
+		path = "~/code/plugins",
 	},
 })
 
