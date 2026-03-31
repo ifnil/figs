@@ -1,0 +1,23 @@
+# keep the UI tight
+show-read-feeds no
+show-read-articles no
+
+# refresh behavior
+refresh-on-startup yes
+auto-reload yes
+reload-time 30
+prepopulate-query-feeds yes
+
+# open links in your desktop browser without blocking Newsboat
+browser "xdg-open %u >/dev/null 2>&1 &"
+
+# convenient filters you can pick with f
+define-filter "cybersecurity only" "tags # \"cybersecurity\""
+define-filter "programming only" "tags # \"programming\""
+define-filter "global politics only" "tags # \"politics\""
+define-filter "tech only" "tags # \"tech\""
+
+# if you're on Newsboat 2.39+
+bind o articlelist,article open-in-browser-and-mark-read -- "open and mark read"
+bind U articlelist,article open-in-browser-noninteractively -- "open in background"
+bind gR feedlist reload-all -- "reload all feeds"
