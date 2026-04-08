@@ -1,28 +1,29 @@
-# global / politics
-https://feeds.bbci.co.uk/news/world/rss.xml global politics world
-https://rss.dw.com/rdf/rss-en-top global politics world
-https://apnews.com/index.rss global politics world
+"query:/news:tags # \"news\""
+https://feeds.bbci.co.uk/news/world/rss.xml "~bbc"            news world
+https://rss.dw.com/rdf/rss-en-top           "~deutsche welle" news world
+https://apnews.com/index.rss                "~ap news"        news world
+https://www.semafor.com/rss.xml             "~semafor"        news world
 
-# cybersecurity
-https://www.kb.cert.org/vuls/atomfeed/ cybersecurity cve vuln advisory
-https://isc.sans.edu/rssfeed_full.xml cybersecurity cve vuln
-https://msrc.microsoft.com/update-guide/rss cybersecurity microsoft cve vuln
-https://www.bleepingcomputer.com/feed/ cybersecurity news vuln
+"query:──/wsj:tags # \"wsj\""
+https://feeds.content.dowjones.io/public/rss/RSSWorldNews       "~world"    wsj news global
+https://feeds.content.dowjones.io/public/rss/RSSUSnews          "~us news"  wsj news usa
+https://feeds.content.dowjones.io/public/rss/socialpoliticsfeed "~politics" wsj news politics
+https://feeds.content.dowjones.io/public/rss/socialhealth       "~health"   wsj news health
 
-# programming languages
+"query:/cybersecurity:tags # \"cybersecurity\""
+https://www.kb.cert.org/vuls/atomfeed/      cybersecurity cve  vuln advisory
+https://isc.sans.edu/rssfeed_full.xml       cybersecurity cve  vuln
+https://www.bleepingcomputer.com/feed/      cybersecurity news vuln
+
+"query:/programming:tags # \"programming\""
 https://devblogs.microsoft.com/dotnet/feed/ programming dotnet csharp
-https://go.dev/blog/feed.atom programming go
-https://blog.rust-lang.org/feed.xml programming rust
-https://ziglang.org/news/index.xml programming zig
-https://ziglang.org/devlog/index.xml programming zig devlog
+https://go.dev/blog/feed.atom               programming go
+https://blog.rust-lang.org/feed.xml         programming rust
+https://ziglang.org/news/index.xml          programming zig
+https://ziglang.org/devlog/index.xml        programming zig
 
-# general tech
+"query:/tech:tags # \"tech\""
 https://feeds.arstechnica.com/arstechnica/index tech general
-https://techcrunch.com/feed/ tech startups general
-https://news.ycombinator.com/rss tech programming links
+https://techcrunch.com/feed/                    tech startups    general
+https://news.ycombinator.com/rss                tech links
 
-"query:Unread:unread = \"yes\""
-"query:Cybersecurity:tags # \"cybersecurity\""
-"query:Programming:tags # \"programming\""
-"query:Global Politics:tags # \"politics\""
-"query:Tech:tags # \"tech\""
