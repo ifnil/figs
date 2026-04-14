@@ -23,6 +23,11 @@ use = "dedukun/bookmarks"
 rev = "9ef1254"
 hash = "92fbb5483657fa7976cdf4e0104e18e0"
 
+[[plugin.deps]]
+use = "Lil-Dank/lazygit"
+rev = "8c4086c"
+hash = "85316b5e9abeae2531d3e5d02a094381"
+
 [[flavor.deps]]
 use = "marcosvnmelo/kanagawa-dragon"
 rev = "4905527"
