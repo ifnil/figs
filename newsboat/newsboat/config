@@ -1,0 +1,47 @@
+include ~/.config/newsboat/themes/dark
+
+# keep the UI tight
+show-read-feeds yes
+show-read-articles yes
+show-title-bar yes
+
+# refresh behavior
+refresh-on-startup no
+auto-reload no
+reload-time 30
+prepopulate-query-feeds yes
+
+# open links in your desktop browser without blocking Newsboat
+# browser "xdg-open %u >/dev/null 2>&1 &"
+browser "open -a Firefox %u"
+
+# theme polish
+search-highlight-colors color15 color1 bold
+
+# convenient filters you can pick with f
+define-filter "cybersecurity only" "tags # \"cybersecurity\""
+define-filter "programming only" "tags # \"programming\""
+define-filter "global politics only" "tags # \"politics\""
+define-filter "tech only" "tags # \"tech\""
+
+# feedlist-format "%?T?│%4i %n %8u %t &├─%t ───────────────────────────────────?"
+feedlist-format "%?T?│%4i %n %8u %t &├─%-15t─────────────────────────────?"
+
+# if you're on Newsboat 2.39+
+bind o articlelist,article open-in-browser-and-mark-read -- "open and mark read"
+bind U articlelist,article open-in-browser-noninteractively -- "open in background"
+bind gR feedlist reload-all -- "reload all feeds"
+
+# Vim-oriented movement and navigation
+bind j feedlist,articlelist,article,urlview,help,searchresultslist down -- "down"
+bind k feedlist,articlelist,article,urlview,help,searchresultslist up -- "up"
+bind h feedlist,articlelist,article,urlview,help,searchresultslist quit -- "back"
+bind l feedlist,articlelist,urlview,searchresultslist open -- "open"
+bind l article open-in-browser-and-mark-read -- "open in browser"
+bind gg everywhere home -- "top"
+bind G everywhere end -- "bottom"
+bind ^D everywhere halfpagedown -- "half page down"
+bind ^U everywhere halfpageup -- "half page up"
+bind q everywhere quit -- "quit/back"
+bind gr feedlist,articlelist reload -- "reload"
+bind R feedlist reload-all -- "reload all feeds"
