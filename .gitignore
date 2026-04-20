@@ -1,4 +1,5 @@
 tmux/plugins
 .luarc.json
 yazi/flavors
+yazi/plugins/
 hypr/host.conf
