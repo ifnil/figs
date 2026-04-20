@@ -6,6 +6,9 @@ COMPLETION_WAITING_DOTS="true"
 ZSH_COMPDUMP="${HOME}/.cache/zsh/zcompdump-${ZSH_VERSION}"
 DISABLE_AUTO_UPDATE=true
 
+# keys
+source "$HOME/.keys"
+
 # system context
 source /etc/os-release
 
