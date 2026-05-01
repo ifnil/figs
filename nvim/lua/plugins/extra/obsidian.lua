@@ -23,6 +23,10 @@ return {
 				name = "dev",
 				path = "~/notes/dev",
 			},
+			{
+				name = "russian",
+				path = "~/notes/russian",
+			},
 		},
 
 		templates = {
