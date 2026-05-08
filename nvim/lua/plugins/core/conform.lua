@@ -24,6 +24,7 @@ return {
 			python = { "isort", "black" },
 			rust = { "rustfmt" },
 			c = { "clang-format" },
+			-- cs = { "csharpier" },
 			sh = { "shfmt" },
 			javascript = { "prettier" },
 			javascriptreact = { "prettier" },

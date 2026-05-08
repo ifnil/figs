@@ -22,20 +22,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
 	end,
 })
 
--- vim.api.nvim_create_autocmd("FileType", {
--- 	group = vim.api.nvim_create_augroup("NativeTreesitter", { clear = true }),
--- 	callback = function(args)
--- 		local buf = args.buf
--- 		local ok, stats = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(buf))
--- 		if ok and stats and stats.size > 100 * 1024 * 1024 then
--- 			return
--- 		end
--- 		if pcall(vim.treesitter.start, buf) then
--- 			vim.bo[buf].indentexpr = "v:lua.vim.treesitter.indentexpr()"
--- 		end
--- 	end,
--- })
-
 vim.api.nvim_create_user_command("Format", function(args)
 	local range = nil
 	if args.count ~= -1 then
@@ -47,3 +33,28 @@ vim.api.nvim_create_user_command("Format", function(args)
 	end
 	require("conform").format({ async = true, lsp_format = "fallback", range = range })
 end, { range = true })
+
+-- Clear search highlights when leaving insert mode
+vim.api.nvim_create_autocmd("InsertLeave", {
+	pattern = "*",
+	callback = function()
+		if vim.v.hlsearch == 1 and vim.fn.mode() == "n" then
+			vim.cmd("nohlsearch")
+		end
+	end,
+})
+
+-- Autocmd to set filetype for .sql files to plsql
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+	pattern = { "*.sql" },
+	command = "setf plsql",
+})
+
+-- vim.api.nvim_create_autocmd("FileType", {
+-- 	pattern = { "<filetype>" },
+-- 	callback = function()
+-- 		vim.treesitter.start()
+-- 		vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+-- 		vim.wo[0][0].foldmethod = "expr"
+-- 	end,
+-- })

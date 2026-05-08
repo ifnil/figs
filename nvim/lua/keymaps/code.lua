@@ -19,8 +19,19 @@ wk.add({
   { "gd",  function() require("snacks").picker.lsp_definitions() end,      desc = "goto definition" },
   { "gD",  function() require("snacks").picker.lsp_declarations() end,     desc = "goto declaration" },
   { "gr",  function() require("snacks").picker.lsp_references() end,       nowait = true, desc = "references" },
-  { "gI",  function() require("snacks").picker.lsp_implementations() end,  desc = "goto implementation" },
+  { "gi",  function() require("snacks").picker.lsp_implementations() end,  desc = "goto implementation" },
   { "gy",  function() require("snacks").picker.lsp_type_definitions() end, desc = "goto t[y]pe definition" },
   { "gai", function() require("snacks").picker.lsp_incoming_calls() end,   desc = "c[a]lls incoming" },
   { "gao", function() require("snacks").picker.lsp_outgoing_calls() end,   desc = "c[a]lls outgoing" },
+})
+
+-- stylua: ignore
+wk.add({
+  { "gp", group = "preview" },
+  { "gpd", function() require("goto-preview").goto_preview_definition() end,      desc = "preview definition" },
+  { "gpt", function() require("goto-preview").goto_preview_type_definition() end,  desc = "preview type definition" },
+  { "gpi", function() require("goto-preview").goto_preview_implementation() end,   desc = "preview implementation" },
+  { "gpD", function() require("goto-preview").goto_preview_declaration() end,      desc = "preview declaration" },
+  { "gpr", function() require("goto-preview").goto_preview_references() end,       desc = "preview references" },
+  { "gP",  function() require("goto-preview").close_all_win() end,                 desc = "close all previews" },
 })

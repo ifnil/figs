@@ -3,52 +3,18 @@ return {
 		"mfussenegger/nvim-dap",
 		recommended = true,
 		dependencies = {
-			"rcarriga/nvim-dap-ui",
+			"jay-babu/mason-nvim-dap.nvim",
+			{
+				"rcarriga/nvim-dap-ui",
+				dependencies = { "nvim-neotest/nvim-nio" },
+			},
 			{
 				"theHamsta/nvim-dap-virtual-text",
 				opts = {},
 			},
 		},
-		-- config = function()
-		-- 	require("config.dap.dap")
-		-- end,
-	},
-	{
-		"rcarriga/nvim-dap-ui",
-		dependencies = {
-			"mfussenegger/nvim-dap",
-		},
-		-- config = function()
-		-- 	require("config.dap.dap-ui")
-		-- end,
-	},
-	{ "nvim-neotest/nvim-nio" },
-	{
-		"Issafalcon/neotest-dotnet",
-		lazy = false,
-		dependencies = {
-			"nvim-neotest/neotest",
-		},
-	},
-	{
-		"nvim-neotest/neotest",
-		requires = {
-			"Issafalcon/neotest-dotnet",
-		},
-		dependencies = {
-			"nvim-neotest/nvim-nio",
-			"nvim-lua/plenary.nvim",
-			"antoinemadec/FixCursorHold.nvim",
-		},
-		-- opts = {
-		-- 	adapters = {
-		-- 		require("neotest-dotnet")({
-		-- 			dap = {
-		-- 				args = { justMyCode = false },
-		-- 				adapter_name = "netcoredbg",
-		-- 			},
-		-- 		}),
-		-- 	},
-		-- },
+		config = function()
+			require("config.dap")
+		end,
 	},
 }

@@ -1,7 +1,11 @@
 return {
 	"saghen/blink.cmp",
-	dependencies = { "rafamadriz/friendly-snippets" },
-	version = "1.*",
+	dependencies = { "saghen/blink.lib", "rafamadriz/friendly-snippets" },
+	build = function()
+		-- build the fuzzy matcher, wait up to 60 seconds
+		-- you can use `gb` in `:Lazy` to rebuild the plugin as needed
+		require("blink.cmp").build():wait(60000)
+	end,
 	opts = {
 		cmdline = {
 			enabled = true,
@@ -33,15 +37,30 @@ return {
 			nerd_font_variant = "mono",
 		},
 
-		completion = { documentation = { auto_show = false } },
+		signature = { enabled = false },
+
+		completion = {
+			documentation = { auto_show = true },
+			ghost_text = { enabled = true },
+			trigger = {
+				show_on_backspace = true,
+				show_on_backspace_in_keyword = true,
+			},
+		},
 
 		sources = {
 			default = { "lsp", "path", "snippets", "buffer", "easy-dotnet" },
+
 			per_filetype = {
 				sql = { "snippets", "dadbod", "buffer" },
 			},
+
 			providers = {
-				dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
+				dadbod = {
+					name = "Dadbod",
+					module = "vim_dadbod_completion.blink",
+				},
+
 				["easy-dotnet"] = {
 					name = "easy-dotnet",
 					enabled = true,

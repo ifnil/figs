@@ -9,6 +9,6 @@ wk.add({
   { "<leader>gL", function() require("snacks").picker.git_log_line() end, desc = "git log line" },
   { "<leader>gs", function() require("snacks").picker.git_status() end, desc = "git status" },
   { "<leader>gS", function() require("snacks").picker.git_stash() end, desc = "git stash" },
-  { "<leader>gd", function() require("snacks").picker.git_diff() end, desc = "git diff (hunks)" },
+  { "<leader>gd", function() require("snacks").picker.git_diff({group = true}) end, desc = "git diff (hunks)" },
   { "<leader>gf", function() require("snacks").picker.git_log_file() end, desc = "git log file" },
 })

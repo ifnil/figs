@@ -38,9 +38,9 @@ vim.opt.pumheight = 0
 vim.opt.clipboard = "unnamedplus"
 vim.opt.winborder = "single"
 vim.opt.mousemoveevent = true
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.opt.foldlevel = 99
+-- vim.opt.foldmethod = "expr"
+-- vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+-- vim.opt.foldlevel = 99
 vim.opt.foldenable = false
 -- vim.opt.fixeol = false
 -- vim.opt.textwidth = 120
@@ -62,19 +62,3 @@ vim.opt.fillchars = {
 	diff = "╱",
 	eob = " ",
 }
-
--- Clear search highlights when leaving insert mode
-vim.api.nvim_create_autocmd("InsertLeave", {
-	pattern = "*",
-	callback = function()
-		if vim.v.hlsearch == 1 and vim.fn.mode() == "n" then
-			vim.cmd("nohlsearch")
-		end
-	end,
-})
-
--- Autocmd to set filetype for .sql files to plsql
-vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
-	pattern = { "*.sql" },
-	command = "setf plsql",
-})

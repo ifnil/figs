@@ -49,3 +49,12 @@ require("keymaps.session")
 require("keymaps.toggle")
 require("keymaps.obsidian")
 require("keymaps.debug")
+
+vim.keymap.set("n", "<leader>uu", function()
+	local current = vim.diagnostic.config().underline
+	vim.diagnostic.config({
+		underline = not current,
+		virtual_text = vim.diagnostic.config().virtual_text,
+		signs = vim.diagnostic.config().signs,
+	})
+end, { desc = "Toggle LSP underlines" })

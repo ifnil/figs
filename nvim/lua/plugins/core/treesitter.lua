@@ -6,6 +6,9 @@ return {
 		lazy = false,
 		build = ":TSUpdate",
 		opts = {
+			highlight = {
+				enabled = true,
+			},
 			ensure_installed = {
 				"c",
 				"toml",
