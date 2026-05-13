@@ -7,7 +7,7 @@ return {
 			local dotnet = require("easy-dotnet")
 			dotnet.setup({
 				test_runner = {
-					auto_start_testrunner = true,
+					auto_start_testrunner = false,
 					hide_legend = false,
 					---@type "split" | "vsplit" | "float" | "buf"
 					viewmode = "float",
@@ -30,14 +30,14 @@ return {
 						build_failed = "󰒡",
 					},
 					mappings = {
-						run_test_from_buffer = { lhs = "<leader>r", desc = "run test from buffer" },
+						run_test_from_buffer = { lhs = "<leader>tR", desc = "run test from buffer" },
 						get_build_errors = { lhs = "<leader>e", desc = "get build errors" },
 						peek_stack_trace_from_buffer = { lhs = "<leader>p", desc = "peek stack trace from buffer" },
 						debug_test_from_buffer = { lhs = "<leader>d", desc = "run test from buffer" },
 						debug_test = { lhs = "<leader>d", desc = "debug test" },
 						go_to_file = { lhs = "g", desc = "go to file" },
 						run_all = { lhs = "<leader>R", desc = "run all tests" },
-						run = { lhs = "<leader>r", desc = "run test" },
+						run = { lhs = "<leader>tr", desc = "run test" },
 						peek_stacktrace = { lhs = "<leader>p", desc = "peek stacktrace of failed test" },
 						expand = { lhs = "o", desc = "expand" },
 						expand_node = { lhs = "E", desc = "expand node" },

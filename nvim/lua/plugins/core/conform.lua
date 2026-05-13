@@ -24,7 +24,7 @@ return {
 			python = { "isort", "black" },
 			rust = { "rustfmt" },
 			c = { "clang-format" },
-			-- cs = { "csharpier" },
+			cs = { "csharpier" },
 			sh = { "shfmt" },
 			javascript = { "prettier" },
 			javascriptreact = { "prettier" },
@@ -44,6 +44,7 @@ return {
 			json = { "fixjson", "prettier" },
 			xml = { "xmlformatter" },
 			nix = { "alejandra" },
+			zig = { "zig" },
 		},
 	},
 }

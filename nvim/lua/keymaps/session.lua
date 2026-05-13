@@ -13,11 +13,10 @@ wk.add({
 })
 
 -- stylua: ignore
-wk.add({
-
-	{ "<leader>r", group = "session" },
-  { "<leader>rs", function() require("persistence").load() end, desc = "restore session" },
-  { "<leader>rS", function() require("persistence").select() end,desc = "select session" },
-  { "<leader>rl", function() require("persistence").load({ last = true }) end, desc = "restore last session" },
-  { "<leader>rd", function() require("persistence").stop() end, desc = "don't save current session" },
-})
+-- wk.add({
+-- 	{ "<leader>r", group = "session" },
+--   { "<leader>rs", function() require("persistence").load() end, desc = "restore session" },
+--   { "<leader>rS", function() require("persistence").select() end,desc = "select session" },
+--   { "<leader>rl", function() require("persistence").load({ last = true }) end, desc = "restore last session" },
+--   { "<leader>rd", function() require("persistence").stop() end, desc = "don't save current session" },
+-- })

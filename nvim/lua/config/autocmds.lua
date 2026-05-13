@@ -50,6 +50,13 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 	command = "setf plsql",
 })
 
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+-- 	pattern = { "*.zig", "*.zon" },
+-- 	callback = function(ev)
+-- 		vim.lsp.buf.format({ async = true })
+-- 	end,
+-- })
+
 -- vim.api.nvim_create_autocmd("FileType", {
 -- 	pattern = { "<filetype>" },
 -- 	callback = function()
