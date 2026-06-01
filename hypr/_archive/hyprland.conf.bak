@@ -7,6 +7,7 @@ source = ./submaps/*
 
 source = ./host.conf
 
+env = PATH, /home/june/.local/bin:$PATH
 env = XDG_CURRENT_DESKTOP, Hyprland
 env = XDG_SESSION_DESKTOP, Hyprland
 env = XDG_SESSION_TYPE, wayland
@@ -17,22 +18,26 @@ env = HYPRCURSOR_SIZE,28
 exec-once = awww-daemon
 exec-once = waybar &
 exec-once = dunst &
-exec-once = hyprpm reload -n
 exec-once = bongocat --config ~/.config/bongocat/bongocat.conf --watch-config
+# exec-once = hyprpm reload -n
 
 exec = gsettings set org.gnome.desktop.interface gtk-theme "Arc-Dark"
 exec = gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
 
-plugin {
-  hy3 {
-    autotile {
-      enable = true
-    }
-  }
+debug {
+    disable_logs = false
 }
 
+# plugin {
+#   hy3 {
+#     autotile {
+#       enable = true
+#     }
+#   }
+# }
+
 general {
-  layout = hy3
+  layout = dwindle
   border_size = 3
   gaps_in = 5
   gaps_out = 5, 15, 15, 15
@@ -47,12 +52,12 @@ master {
 
 dwindle {
   preserve_split = true
-  smart_split = true
+  # smart_split = true
 }
 
 input {
-  kb_layout  = us,ru
   kb_options = caps:escape_shifted_capslock
+  kb_layout  = us,ru
   kb_variant = ,phonetic_winkeys
 
   touchpad {
@@ -83,6 +88,7 @@ bind = $mod,       Return, exec,       $term
 bind = $mod SHIFT, Q,      killactive,
 bind = $mod,       D,      exec,       $rofi
 bind = $mod SHIFT, C,      exec,       hyprctl reload
+bind = ALT,        e,      exec,       rofimoji
 
 # Function keys
 bindel =, XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
@@ -106,24 +112,24 @@ bindp = $mod SHIFT, XF86AudioRaiseVolume, layoutmsg, swapnext
 bindp = $mod SHIFT, XF86AudioLowerVolume, layoutmsg, swapnext prev
 
 # Window focus (movefocus in a direction)
-bind = $mod, Left,        hy3:movefocus, l   # Focus window left
-bind = $mod, Down,        hy3:movefocus, d   # Focus window down
-bind = $mod, Up,          hy3:movefocus, u   # Focus window up
-bind = $mod, Right,       hy3:movefocus, r   # Focus window right
-bind = $mod, H,           hy3:movefocus, l   # Focus window left
-bind = $mod, J,           hy3:movefocus, d   # Focus window down
-bind = $mod, K,           hy3:movefocus, u   # Focus window up
-bind = $mod, L,           hy3:movefocus, r   # Focus window right
+bind = $mod, Left,        movefocus, l   # Focus window left
+bind = $mod, Down,        movefocus, d   # Focus window down
+bind = $mod, Up,          movefocus, u   # Focus window up
+bind = $mod, Right,       movefocus, r   # Focus window right
+bind = $mod, H,           movefocus, l   # Focus window left
+bind = $mod, J,           movefocus, d   # Focus window down
+bind = $mod, K,           movefocus, u   # Focus window up
+bind = $mod, L,           movefocus, r   # Focus window right
 
 # Move tiled windows (hy3:movewindow in a direction)
-bind = $mod SHIFT, Left,  hy3:movewindow, l   # Move window left
-bind = $mod SHIFT, Down,  hy3:movewindow, d   # Move window down
-bind = $mod SHIFT, Up,    hy3:movewindow, u   # Move window up
-bind = $mod SHIFT, Right, hy3:movewindow, r   # Move window right
-bind = $mod SHIFT, H,     hy3:movewindow, l   # Move window left
-bind = $mod SHIFT, J,     hy3:movewindow, d   # Move window down
-bind = $mod SHIFT, K,     hy3:movewindow, u   # Move window up
-bind = $mod SHIFT, L,     hy3:movewindow, r   # Move window right
+bind = $mod SHIFT, Left,  movewindow, l   # Move window left
+bind = $mod SHIFT, Down,  movewindow, d   # Move window down
+bind = $mod SHIFT, Up,    movewindow, u   # Move window up
+bind = $mod SHIFT, Right, movewindow, r   # Move window right
+bind = $mod SHIFT, H,     movewindow, l   # Move window left
+bind = $mod SHIFT, J,     movewindow, d   # Move window down
+bind = $mod SHIFT, K,     movewindow, u   # Move window up
+bind = $mod SHIFT, L,     movewindow, r   # Move window right
 
 # Move current workspace to another monitor
 bind = $mod ALT, Left,  movecurrentworkspacetomonitor, -1
@@ -155,7 +161,7 @@ bind = $mod SHIFT, 9, movetoworkspacesilent, 9
 bind = $mod SHIFT, 0, movetoworkspacesilent, 10
 
 bind = $mod,       W,     togglegroup,      # Group/ungroup windows (tabbed container)
-bind = $mod,       E,     togglesplit,      # Toggle split orientation (dwindle layout)
+# bind = $mod,       E,     togglesplit,      # Toggle split orientation (dwindle layout)
 bind = $mod,       F,     fullscreen,       # Toggle fullscreen
 bind = $mod SHIFT, space, togglefloating,   # Toggle floating mode
 
