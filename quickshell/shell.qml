@@ -89,10 +89,42 @@ PanelWindow {
 		}
 
 		ModuleBox {
-			visible: SystemTray.items.values.length > 0
+			Rectangle {
+				id: systemTrayBox
+				visible: SystemTray.items.values.length > 0
 
-			Tray {
-				iconSize: root.fontSize
+				color: "transparent"
+				implicitWidth: tray.implicitWidth
+				implicitHeight: tray.implicitHeight + 6
+
+				Tray {
+					id: tray
+					iconSize: root.fontSize
+				}
+			}
+		}
+
+		ModuleBox {
+			NetworkModule {
+				fontColor: root.fontColor
+				fontFamily: root.fontFamily
+				fontSize: root.fontSize
+			}
+		}
+
+		ModuleBox {
+			LanguageModule {
+				fontColor: root.fontColor
+				fontFamily: root.fontFamily
+				fontSize: root.fontSize
+			}
+		}
+
+		ModuleBox {
+			BluetoothModule {
+				fontColor: root.fontColor
+				fontFamily: root.fontFamily
+				fontSize: root.fontSize
 			}
 		}
 
