@@ -11,6 +11,13 @@ local alt_mod = "ALT"
 local rofi = "rofi -show combi -combi-modi 'drun,run,ssh,window,emoji' -terminal '" .. term .. "' -show-icons -lines 10"
 
 hl.env("PATH", "/home/june/.local/bin:" .. (os.getenv("PATH") or ""))
+-- Gentoo OpenRC has no dbus[user-session], so the dbus client lib won't
+-- auto-default to $XDG_RUNTIME_DIR/bus; it tries X11 autolaunch, fails on
+-- Wayland, and sets DBUS_SESSION_BUS_ADDRESS=disabled:. Apps launched from
+-- the launcher/.desktop then can't reach dunst and draw their own toplevel
+-- notification windows. Export the bus explicitly for all session children.
+hl.env("XDG_RUNTIME_DIR", os.getenv("XDG_RUNTIME_DIR") or "/run/user/1000")
+hl.env("DBUS_SESSION_BUS_ADDRESS", "unix:path=" .. (os.getenv("XDG_RUNTIME_DIR") or "/run/user/1000") .. "/bus")
 hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
 hl.env("XDG_SESSION_DESKTOP", "Hyprland")
 hl.env("XDG_SESSION_TYPE", "wayland")
@@ -19,6 +26,7 @@ hl.env("HYPRCURSOR_THEME", "rose-pine-hyprcursor")
 hl.env("HYPRCURSOR_SIZE", "28")
 
 hl.on("hyprland.start", function()
+	hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
 	hl.exec_cmd("awww-daemon")
 	hl.exec_cmd("waybar &")
 	hl.exec_cmd("dunst &")
@@ -67,13 +75,21 @@ hl.config({
 	},
 })
 
+-- Safety net: if dunst ever comes up on the X11 backend it renders as a
+-- tiled toplevel. Float it. No-op for the normal wayland layer-shell dunst.
+hl.window_rule({
+	name = "float-dunst",
+	match = { class = "^(dunst)$" },
+	float = true,
+})
+
 hl.device({
 	name = "tpps/2-elan-trackpoint",
 	sensitivity = -0.5,
 })
 
 local submaps = require("submaps")
-hl.define_submap("machine_ctl", submaps.machine_ctl)
+hl.define_submap("(e)xit (l)ock s(u)spend (s)hutdown (r)eboot", submaps.machine_ctl)
 hl.define_submap("resize", submaps.resize)
 hl.define_submap("screenshot", submaps.screenshot)
 
@@ -82,7 +98,7 @@ local function modmap(bind)
 end
 
 hl.bind(modmap("R"), hl.dsp.submap("resize"))
-hl.bind(modmap("SHIFT + E"), hl.dsp.submap("machine_ctl"))
+hl.bind(modmap("SHIFT + E"), hl.dsp.submap("(e)xit (l)ock s(u)spend (s)hutdown (r)eboot"))
 hl.bind(alt_mod .. "+ SHIFT + 4", hl.dsp.submap("screenshot")) -- was `ALT&Shift_L, 4`
 
 hl.bind(modmap("SHIFT + mouse:273"), hl.dsp.window.resize(), { mouse = true }) -- Resize, Mod+Shift+RMB

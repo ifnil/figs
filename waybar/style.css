@@ -28,7 +28,9 @@ tooltip {
 #network,
 #bluetooth,
 #wireplumber,
+#workspaces,
 #submap {
+  box-shadow: 5px 3px rgba(0, 0, 0, 0.3);
   background: #000;
   border-radius: 4px;
   margin: 6px 6px 6px 0px;
@@ -47,9 +49,8 @@ tooltip {
 }
 
 #workspaces {
-  background: #000;
-  border-radius: 4px;
   margin: 6px 0px 6px 6px;
+  padding: 1px;
 }
 
 #workspaces button {

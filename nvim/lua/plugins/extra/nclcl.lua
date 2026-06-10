@@ -1,5 +1,6 @@
-return {
-  "ifnil/nclcl",
-  dev = true,
-  cmd = "Calc",
-}
+return {}
+-- return {
+--   "ifnil/nclcl",
+--   dev = true,
+--   cmd = "Calc",
+-- }

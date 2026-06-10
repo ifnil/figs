@@ -22,10 +22,10 @@ fi
 export ZSH="$HOME/.config/oh-my-zsh"
 export ZSH_CUSTOM="$HOME/.config/oh-my-zsh/custom"
 export EDITOR="/usr/bin/nvim"
-export QT_QPA_PLATFORM="xcb"
+export QT_QPA_PLATFORM="wayland"
 export PYENV_ROOT="$HOME/.local/src/pyenv"
 export FIGS="~/figs"
-
+export QML_IMPORT_PATH=/usr/lib64/qt6/qml
 export ZVM_PATH="$HOME/.local/zvm"
 export ZVM_INSTALL="$HOME/.local/zvm/self"
 
@@ -75,4 +75,3 @@ source $ZSH/oh-my-zsh.sh
 
 eval "$(starship init zsh)"
 eval "$(pyenv init - zsh)"
-
