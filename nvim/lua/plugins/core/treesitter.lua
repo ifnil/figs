@@ -34,6 +34,7 @@ return {
 				"jsdoc",
 				"diff",
 				"c_sharp",
+				"ocaml",
 			},
 		},
 	},

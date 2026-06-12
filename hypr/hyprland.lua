@@ -28,7 +28,7 @@ hl.env("HYPRCURSOR_SIZE", "28")
 hl.on("hyprland.start", function()
 	hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
 	hl.exec_cmd("awww-daemon")
-	hl.exec_cmd("quickshell --no-duplicate &")
+	hl.exec_cmd("quickshell --no-duplicate -c topbar &")
 	hl.exec_cmd("dunst &")
 	hl.exec_cmd("bongocat --config ~/.config/bongocat/bongocat.conf --watch-config")
 end)
@@ -66,7 +66,7 @@ hl.config({
 	},
 
 	input = {
-		kb_options = "caps:escape_shifted_capslock",
+		kb_options = "caps:escape_shifted_capslock,grp:lctrl_space_toggle",
 		kb_layout = "us,ru",
 		kb_variant = ",phonetic_winkeys",
 		touchpad = {

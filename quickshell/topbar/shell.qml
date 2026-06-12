@@ -1,3 +1,4 @@
+//@ pragma UseQApplication
 pragma ComponentBehavior: Bound
 
 import Quickshell
@@ -32,7 +33,7 @@ PanelWindow {
 		right: true
 	}
 
-	implicitHeight: 32
+	implicitHeight: 36
 	color: "transparent"
 
 	RowLayout {
@@ -89,16 +90,19 @@ PanelWindow {
 		}
 
 		ModuleBox {
+			visible: SystemTray.items.values.length > 0
 			Rectangle {
 				id: systemTrayBox
-				visible: SystemTray.items.values.length > 0
 
 				color: "transparent"
 				implicitWidth: tray.implicitWidth
 				implicitHeight: tray.implicitHeight + 6
 
+				Layout.alignment: Qt.AlignVCenter
+
 				Tray {
 					id: tray
+					anchors.centerIn: parent
 					iconSize: root.fontSize
 				}
 			}

@@ -4,12 +4,15 @@ import Quickshell
 import Quickshell.Widgets
 import Quickshell.Services.SystemTray
 import QtQuick
+import QtQuick.Layouts
 
 Row {
 	id: root
 
 	property int iconSize: 16
-	spacing: 6
+
+	spacing: 10
+	Layout.alignment: Qt.AlignVCenter
 
 	Repeater {
 		model: SystemTray.items
@@ -20,7 +23,11 @@ Row {
 
 			width: root.iconSize
 			height: root.iconSize
-			anchors.verticalCenter: parent?.verticalCenter
+
+			function openMenu() {
+				if (modelData.hasMenu)
+					menuAnchor.open();
+			}
 
 			IconImage {
 				anchors.fill: parent
@@ -34,13 +41,14 @@ Row {
 
 				onClicked: event => {
 					if (event.button === Qt.LeftButton) {
-						if (!entry.modelData.onlyMenu)
+						if (entry.modelData.onlyMenu)
+							entry.openMenu();
+						else
 							entry.modelData.activate();
 					} else if (event.button === Qt.MiddleButton) {
 						entry.modelData.secondaryActivate();
 					} else if (event.button === Qt.RightButton) {
-						if (entry.modelData.hasMenu)
-							menuAnchor.open();
+						entry.openMenu();
 					}
 				}
 
@@ -51,8 +59,8 @@ Row {
 				id: menuAnchor
 				menu: entry.modelData.menu
 				anchor.window: QsWindow.window
-				anchor.rect.x: entry.x
-				anchor.rect.y: entry.y + entry.height
+				anchor.item: entry
+				anchor.rect.y: entry.height
 			}
 		}
 	}
