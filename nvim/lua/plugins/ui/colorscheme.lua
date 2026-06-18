@@ -2,7 +2,7 @@ return {
 	{
 		"ifnil/gum",
 		lazy = false,
-		dev = true,
+		-- dev = true,
 		priority = 1000,
 		opts = {
 			transparent = false,

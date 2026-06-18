@@ -7,7 +7,7 @@ return {
 			"clangd",
 			"yamlls",
 			"sqlls",
-			"pyright",
+			"pylsp",
 			"tailwindcss",
 			"html",
 			"ts_ls",

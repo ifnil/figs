@@ -27,9 +27,6 @@ require("lazy").setup({
 		{ import = "plugins.extra" },
 	},
 	checker = { enabled = true },
-	dev = {
-		path = "~/code/plugins",
-	},
 })
 
 vim.cmd("colorscheme gum")

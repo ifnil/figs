@@ -35,6 +35,7 @@ return {
 				"diff",
 				"c_sharp",
 				"ocaml",
+				"python",
 			},
 		},
 	},
