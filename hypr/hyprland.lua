@@ -2,7 +2,9 @@ require("animation")
 require("layouts")
 
 local colors = {
-	background = "rgba(489c7acf)",
+	-- background = "rgba(489c7acf)",
+	-- background = "rgba(eeed7bcf)",
+	background = "rgba(00ffb3fc)",
 }
 
 local term = "kitty"
@@ -11,13 +13,7 @@ local alt_mod = "ALT"
 local rofi = "rofi -show combi -combi-modi 'drun,run,ssh,window,emoji' -terminal '" .. term .. "' -show-icons -lines 10"
 
 hl.env("PATH", "/home/june/.local/bin:" .. (os.getenv("PATH") or ""))
--- Gentoo OpenRC has no dbus[user-session], so the dbus client lib won't
--- auto-default to $XDG_RUNTIME_DIR/bus; it tries X11 autolaunch, fails on
--- Wayland, and sets DBUS_SESSION_BUS_ADDRESS=disabled:. Apps launched from
--- the launcher/.desktop then can't reach dunst and draw their own toplevel
--- notification windows. Export the bus explicitly for all session children.
-hl.env("XDG_RUNTIME_DIR", os.getenv("XDG_RUNTIME_DIR") or "/run/user/1000")
-hl.env("DBUS_SESSION_BUS_ADDRESS", "unix:path=" .. (os.getenv("XDG_RUNTIME_DIR") or "/run/user/1000") .. "/bus")
+
 hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
 hl.env("XDG_SESSION_DESKTOP", "Hyprland")
 hl.env("XDG_SESSION_TYPE", "wayland")
@@ -54,7 +50,7 @@ hl.config({
 	},
 
 	dwindle = {
-		preserve_split = true,
+		-- preserve_split = true,
 	},
 
 	decoration = {
@@ -75,8 +71,6 @@ hl.config({
 	},
 })
 
--- Safety net: if dunst ever comes up on the X11 backend it renders as a
--- tiled toplevel. Float it. No-op for the normal wayland layer-shell dunst.
 hl.window_rule({
 	name = "float-dunst",
 	match = { class = "^(dunst)$" },
@@ -175,7 +169,7 @@ end
 hl.bind(modmap("SHIFT + space"), hl.dsp.window.float({ action = "toggle" })) -- Toggle floating
 hl.bind(modmap("W"), hl.dsp.group.toggle()) -- Group/ungroup (tabbed container)
 hl.bind(modmap("F"), hl.dsp.window.fullscreen()) -- Toggle fullscreen
--- hl.bind(mod .. " + E",      hl.dsp.layout("togglesplit"))           -- Toggle split orientation (dwindle)
+hl.bind(modmap("E"), hl.dsp.layout("togglesplit")) -- Toggle split orientation (dwindle)
 
 local hostname = (function()
 	local h = os.getenv("HOSTNAME")
