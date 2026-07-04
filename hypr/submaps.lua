@@ -4,7 +4,9 @@ return {
 		hl.bind("l", hl.dsp.window.resize({ x = -40, y = 0, relative = true }), { repeating = true })
 		hl.bind("k", hl.dsp.window.resize({ x = 0, y = -40, relative = true }), { repeating = true })
 		hl.bind("j", hl.dsp.window.resize({ x = 0, y = 40, relative = true }), { repeating = true })
-		hl.bind("catchall", hl.dsp.submap("reset"))
+		-- exit only on escape/enter; catchall here would reset after every h/l/k/j press
+		hl.bind("Escape", hl.dsp.submap("reset"))
+		hl.bind("Return", hl.dsp.submap("reset"))
 	end,
 
 	screenshot = function()

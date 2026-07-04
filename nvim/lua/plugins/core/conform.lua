@@ -34,7 +34,6 @@ return {
 			rust = { "rustfmt" },
 			c = { "clang-format" },
 			cpp = { "clang-format" },
-			-- cs = { "csharpier" },
 			sh = { "shfmt" },
 			javascript = { "prettier" },
 			javascriptreact = { "prettier" },

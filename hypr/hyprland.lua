@@ -62,7 +62,7 @@ hl.config({
 	},
 
 	input = {
-		kb_options = "caps:escape_shifted_capslock,grp:lctrl_space_toggle",
+		kb_options = "caps:escape_shifted_capslock",
 		kb_layout = "us,ru",
 		kb_variant = ",phonetic_winkeys",
 		touchpad = {
@@ -104,7 +104,7 @@ hl.bind(modmap("Return"), hl.dsp.exec_cmd(term))
 hl.bind(modmap("SHIFT + Q"), hl.dsp.window.close())
 hl.bind(modmap("D"), hl.dsp.exec_cmd(rofi))
 hl.bind(modmap("SHIFT + C"), hl.dsp.exec_cmd("hyprctl reload"))
-hl.bind(alt_mod .. "+ e", hl.dsp.exec_cmd("rofimoji"))
+hl.bind(alt_mod .. "+ e", hl.dsp.exec_cmd("rofimoji -a copy"))
 
 hl.bind(
 	"XF86AudioRaiseVolume",

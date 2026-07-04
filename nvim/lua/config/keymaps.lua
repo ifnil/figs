@@ -39,7 +39,6 @@ vim.keymap.set("v", "<C-k>", ":lua require('markdowny').link()<cr>", { buffer = 
 vim.keymap.set("v", "<C-e>", ":lua require('markdowny').code()<cr>", { buffer = 0 })
 
 require("keymaps.nogroup")
-require("keymaps.database")
 require("keymaps.buffer")
 require("keymaps.code")
 require("keymaps.git")
@@ -48,7 +47,6 @@ require("keymaps.find")
 require("keymaps.session")
 require("keymaps.toggle")
 require("keymaps.obsidian")
-require("keymaps.debug")
 
 vim.keymap.set("n", "<leader>uu", function()
 	local current = vim.diagnostic.config().underline

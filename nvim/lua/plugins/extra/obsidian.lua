@@ -16,38 +16,9 @@ return {
 
 		workspaces = {
 			{
-				name = "work",
-				path = "~/notes/work",
+				name = "notes",
+				path = "~/notes",
 			},
-			{
-				name = "dev",
-				path = "~/notes/dev",
-			},
-			{
-				name = "russian",
-				path = "~/notes/russian",
-			},
-		},
-
-		templates = {
-			folder = "_templates",
-			customizations = {
-				alert = {
-					notes_subdir = "alerts/",
-				},
-				ticket = {
-					notes_subdir = "tickets/",
-				},
-				task = {
-					notes_subdir = "tasks/",
-				},
-			},
-		},
-
-		daily_notes = {
-			enabled = true,
-			folder = "daily",
-			template = "_templates/daily.md",
 		},
 
 		attachments = {

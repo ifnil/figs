@@ -1,15 +1,13 @@
 return {
-	{ "nvim-treesitter/nvim-treesitter-textobjects", branch = "main" },
 	{ "nvim-treesitter/nvim-treesitter-context" },
 	{
 		"nvim-treesitter/nvim-treesitter",
 		lazy = false,
+		branch = "main",
 		build = ":TSUpdate",
-		opts = {
-			highlight = {
-				enabled = true,
-			},
-			ensure_installed = {
+		config = function()
+			require("nvim-treesitter").setup()
+			require("nvim-treesitter").install({
 				"c",
 				"toml",
 				"sql",
@@ -33,10 +31,15 @@ return {
 				"json",
 				"jsdoc",
 				"diff",
-				"c_sharp",
 				"ocaml",
-				"python",
-			},
-		},
+			})
+		end,
+	},
+	{
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		branch = "main",
+		config = function()
+			require("nvim-treesitter-textobjects").setup()
+		end,
 	},
 }

@@ -50,6 +50,25 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 	command = "setf plsql",
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "nasm",
+	callback = function()
+		vim.keymap.set("n", "<leader>mb", function()
+			vim.cmd("write")
+			vim.cmd("!nasm -f elf64 % -o %:r.o && ld %:r.o -o %:r")
+		end, { buffer = true, desc = "Build NASM file" })
+	end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "nasm",
+	callback = function()
+		vim.bo.commentstring = "; %s"
+		vim.bo.tabstop = 4
+		vim.bo.shiftwidth = 4
+		vim.bo.expandtab = false
+	end,
+})
 -- vim.api.nvim_create_autocmd("BufWritePre", {
 -- 	pattern = { "*.zig", "*.zon" },
 -- 	callback = function(ev)
@@ -57,11 +76,13 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 -- 	end,
 -- })
 
--- vim.api.nvim_create_autocmd("FileType", {
--- 	pattern = { "<filetype>" },
--- 	callback = function()
--- 		vim.treesitter.start()
--- 		vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
--- 		vim.wo[0][0].foldmethod = "expr"
--- 	end,
--- })
+vim.api.nvim_create_autocmd("FileType", {
+	callback = function(ev)
+		-- only start if a parser exists for this buffer
+		local ok = pcall(vim.treesitter.start, ev.buf)
+		if ok then
+			vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+			vim.wo[0][0].foldmethod = "expr"
+		end
+	end,
+})
