@@ -1,0 +1,162 @@
+# Sway(FX) config — ported from hypr/hyprland.lua + submaps.lua + animation.lua
+#
+# Env vars (PATH, QT_QPA_PLATFORMTHEME, dbus fix, …) can't be set from sway
+# config — they live in scripts/start-sway. Point the session .desktop Exec
+# at that wrapper.
+
+set $mod Mod4
+set $alt Mod1
+set $term kitty
+set $rofi rofi -show combi -combi-modi 'drun,run,ssh,window,emoji' -terminal '$term' -show-icons -lines 10
+set $accent #00ffb3fc
+
+
+default_border pixel 3
+default_floating_border pixel 3
+
+gaps inner 5
+gaps outer 2
+gaps top   -5
+
+# class                 border   bg       text    indicator childborder
+client.focused          $accent  $accent  #000000 $accent   $accent
+
+shadows enable
+shadow_blur_radius 13
+corner_radius 0
+
+input type:keyboard {
+    xkb_layout us,ru
+    xkb_variant ,phonetic_winkeys
+    xkb_options caps:escape_shifted_capslock
+}
+
+input type:touchpad {
+    tap enabled
+    natural_scroll enabled
+}
+
+input "2:10:TPPS/2_Elan_TrackPoint" {
+    pointer_accel -0.5
+}
+
+seat * xcursor_theme rose-pine 28
+
+for_window [app_id="^dunst$"] floating enable
+
+exec_always autotiling-rs
+
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+exec awww-daemon
+exec quickshell --no-duplicate -c topbar
+exec dunst
+exec bongocat --config ~/.config/bongocat/bongocat.conf --watch-config
+exec gsettings set org.gnome.desktop.interface gtk-theme "Arc-Dark"
+exec gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
+
+floating_modifier $mod normal
+
+bindsym $mod+Return  exec $term
+bindsym $mod+Shift+q kill
+bindsym $mod+d       exec $rofi
+bindsym $mod+Shift+c reload
+bindsym $alt+e       exec rofimoji -a copy
+
+bindsym --locked XF86AudioRaiseVolume exec 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+; amixer sset Master 2%+'
+bindsym --locked XF86AudioLowerVolume exec 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-; amixer sset Master 2%-'
+bindsym --locked XF86AudioMute exec 'wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; amixer sset Master toggle'
+
+bindsym XF86AudioPlay         exec playerctl play-pause
+bindsym XF86AudioPrev         exec playerctl previous
+bindsym XF86AudioNext         exec playerctl next
+bindsym XF86MonBrightnessUp   exec brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym XF86KbdBrightnessUp   exec brightnessctl --device='smc::kbd_backlight' set +5%
+bindsym XF86KbdBrightnessDown exec brightnessctl --device='smc::kbd_backlight' set 5%-
+
+bindsym $mod+XF86AudioRaiseVolume workspace next
+bindsym $mod+XF86AudioLowerVolume workspace prev
+
+# window focus
+bindsym $mod+Left  focus left
+bindsym $mod+Down  focus down
+bindsym $mod+Up    focus up
+bindsym $mod+Right focus right
+bindsym $mod+h     focus left
+bindsym $mod+j     focus down
+bindsym $mod+k     focus up
+bindsym $mod+l     focus right
+
+# move windows
+bindsym $mod+Shift+Left  move left
+bindsym $mod+Shift+Down  move down
+bindsym $mod+Shift+Up    move up
+bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+h     move left
+bindsym $mod+Shift+j     move down
+bindsym $mod+Shift+k     move up
+bindsym $mod+Shift+l     move right
+
+# move current workspace to another monitor
+bindsym $mod+$alt+Left  move workspace to output left
+bindsym $mod+$alt+Down  move workspace to output left
+bindsym $mod+$alt+Right move workspace to output right
+bindsym $mod+$alt+Up    move workspace to output right
+
+# workspaces: switch (mod+N) and move-silent (mod+Shift+N)
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+w layout toggle tabbed split
+bindsym $mod+f fullscreen toggle
+bindsym $mod+e layout toggle split
+
+mode "resize" {
+    bindsym h resize grow width 40px
+    bindsym l resize shrink width 40px
+    bindsym k resize shrink height 40px
+    bindsym j resize grow height 40px
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+}
+bindsym $mod+r mode "resize"
+
+mode "(e)xit (l)ock s(u)spend (s)hutdown (r)eboot" {
+    bindsym e exit
+    bindsym l exec 'swaylock', mode "default"
+    bindsym u exec 'loginctl suspend', mode "default"
+    bindsym s exec 'loginctl poweroff', mode "default"
+    bindsym r exec 'loginctl reboot', mode "default"
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+}
+bindsym $mod+Shift+e mode "(e)xit (l)ock s(u)spend (s)hutdown (r)eboot"
+
+mode "screenshot" {
+    bindsym p exec 'grim -g "$(slurp)" ~/pictures/screenshots/$(date +%F_%H-%M-%S).png', mode "default"
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+}
+bindsym $alt+Shift+4 mode "screenshot"
+
+# --- Host-specific ---
+include ~/.config/sway/hosts/$(hostname).conf

@@ -1,0 +1,23 @@
+#!/bin/sh
+# Session wrapper — sway has no `env` directive, so exports happen here.
+# Point the wayland-session .desktop at this: Exec=/home/june/figs/sway/scripts/start-sway
+
+export PATH="$HOME/.local/bin:$PATH"
+
+export XDG_CURRENT_DESKTOP=sway
+export XDG_SESSION_DESKTOP=sway
+export XDG_SESSION_TYPE=wayland
+export QT_QPA_PLATFORMTHEME=qt6ct
+
+# hyprcursor theme n/a; plain xcursor instead
+export XCURSOR_THEME=rose-pine
+export XCURSOR_SIZE=28
+
+# gentoo openrc has no dbus[user-session]; without an explicit address the
+# dbus client lib tries X11 autolaunch, fails on wayland, and sets
+# DBUS_SESSION_BUS_ADDRESS=disabled: — apps launched from rofi/.desktop then
+# can't reach dunst. Export the bus explicitly for all session children.
+export XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}"
+export DBUS_SESSION_BUS_ADDRESS="${DBUS_SESSION_BUS_ADDRESS:-unix:path=$XDG_RUNTIME_DIR/bus}"
+
+exec sway "$@"

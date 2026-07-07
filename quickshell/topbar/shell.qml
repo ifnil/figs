@@ -36,6 +36,12 @@ PanelWindow {
 			fontSize: root.fontSize
 		}
 
+		SubmapModule {
+			accentColor: root.colGreen
+			fontFamily: root.fontFamily
+			fontSize: root.fontSize
+		}
+
 		Item {
 			Layout.fillWidth: true
 		}
