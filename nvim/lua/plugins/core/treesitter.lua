@@ -32,14 +32,26 @@ return {
 				"jsdoc",
 				"diff",
 				"ocaml",
+				"gdscript",
 			})
 		end,
 	},
 	{
 		"nvim-treesitter/nvim-treesitter-textobjects",
 		branch = "main",
-		config = function()
-			require("nvim-treesitter-textobjects").setup()
+		init = function()
+			vim.g.no_plugin_maps = true
 		end,
+		opts = {
+			select = {
+				lookahead = true,
+				selection_modes = {
+					["@parameter.outer"] = "v", -- charwise
+					["@function.outer"] = "V", -- linewise
+				},
+				include_surrounding_whitespace = false,
+				set_jumps = true,
+			},
+		},
 	},
 }

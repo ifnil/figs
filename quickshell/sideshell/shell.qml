@@ -5,34 +5,43 @@ import Quickshell
 import QtQuick
 import QtQuick.Layouts
 
-PanelWindow {
-	id: root
+ShellRoot {
+	Variants {
+		model: Quickshell.screens
 
-	property color colBg: "#000"
-	property color colFg: "#fff"
-	property color colGreen: "#489c7a"
+		PanelWindow {
+			id: root
 
-	property string fontFamily: "Tamzen"
-	property color fontColor: colFg
-	property int fontSize: 14
+			required property ShellScreen modelData
 
-	implicitWidth: 25
-	color: "transparent"
+			property color colBg: "#000"
+			property color colFg: "#fff"
+			property color colGreen: "#489c7a"
 
-	anchors {
-		top: true
-		bottom: true
-		left: true
-	}
+			property string fontFamily: "Tamzen"
+			property color fontColor: colFg
+			property int fontSize: 14
 
-	ColumnLayout {
-		Layout.alignment: Qt.AlignVCenter
-		anchors.fill: parent
+			screen: modelData
+			implicitWidth: 25
+			color: "transparent"
 
-		WorkspacesModule {
-			activeColor: root.colGreen
-			fontFamily: root.fontFamily
-			fontSize: root.fontSize
+			anchors {
+				top: true
+				bottom: true
+				left: true
+			}
+
+			ColumnLayout {
+				Layout.alignment: Qt.AlignVCenter
+				anchors.fill: parent
+
+				WorkspacesModule {
+					activeColor: root.colGreen
+					fontFamily: root.fontFamily
+					fontSize: root.fontSize
+				}
+			}
 		}
 	}
 }

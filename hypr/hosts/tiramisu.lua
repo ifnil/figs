@@ -7,7 +7,19 @@
 hl.env("XDG_RUNTIME_DIR", os.getenv("XDG_RUNTIME_DIR") or "/run/user/1000")
 hl.env("DBUS_SESSION_BUS_ADDRESS", "unix:path=" .. (os.getenv("XDG_RUNTIME_DIR") or "/run/user/1000") .. "/bus")
 
-hl.monitor({ output = "", mode = "1920x1200@60", position = "0x0", scale = 1 })
+-- laptop
+hl.monitor({ output = "eDP-1", mode = "1920x1200@60", position = "0x0", scale = 1 })
+
+-- portable monitor
+hl.monitor({ output = "HDMI-A-1", mode = "1920x1200@60", position = "-1920x0", scale = 1 })
+
+-- external
+hl.monitor({ output = "DP-1", mode = "preferred", position = "-2560x0", scale = 1 })
+hl.workspace_rule({
+	workspace = "1",
+	monitor = "DP-1",
+	default = true,
+})
 
 hl.config({
 	misc = {

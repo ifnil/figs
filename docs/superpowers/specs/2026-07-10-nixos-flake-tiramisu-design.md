@@ -59,7 +59,7 @@ flake/
 - user `june`: wheel, docker, video, input; shell zsh
 - fonts: tamzen, nerd-fonts.gohufont, noto-fonts (+emoji)
 - polkit, xdg-desktop-portal (hyprland + wlr + gtk)
-- `system.stateVersion = "25.05"` (fresh install)
+- `system.stateVersion = "26.05"` (fresh install)
 
 ## Home-manager (NixOS module)
 

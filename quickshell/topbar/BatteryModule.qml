@@ -7,6 +7,7 @@ import QtQuick.Layouts
 ModuleBox {
 	id: root
 
+	property color bgColor: "#000"
 	property color fontColor: "#fff"
 	property string fontFamily: "Tamzen"
 	property int fontSize: 14
@@ -30,7 +31,7 @@ ModuleBox {
 			id: batteryText
 
 			anchors.centerIn: parent
-			color: (root.critical || root.warning) ? "#ddc7a1" : root.fontColor
+			color: (root.critical || root.warning) ? root.bgColor : root.fontColor
 			text: root.batIcons[Math.min(4, Math.floor(root.pct / 20))] + "  " + root.pct + "%"
 
 			font {

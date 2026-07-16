@@ -36,6 +36,7 @@ path+=("$HOME/.local/bin")
 path+=("$HOME/.local/zvm/self")
 path+=("$HOME/.local/zvm/bin")
 path+=("$PYENV_ROOT/bin")
+path+=("$HOME/.emacs.d/bin")
 
 # PLUGINS
 plugins=(
@@ -51,7 +52,12 @@ alias ssh="kitten ssh"
 alias jq="jq -C"
 alias qmlls="qmlls6"
 alias cj="z"
+alias jp="z"
 alias makeport="nvim /etc/portage/make.conf"
+alias xxx="nvim /etc/portage/package.use/xxxx"
+alias et="emacsclient -t -a \"\""
+alias emacs="emacsclient -t -a \"\""
+alias dom="emacsclient -t -a \"\""
 
 function vpn() {
   case "$1" in
@@ -75,3 +81,15 @@ source $ZSH/oh-my-zsh.sh
 
 eval "$(starship init zsh)"
 eval "$(pyenv init - zsh)"
+
+# Point apps (ProtonVPN keyring, Secret Service) at the user D-Bus session bus
+# export DBUS_SESSION_BUS_ADDRESS="unix:path=${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/bus"
+
+
+# BEGIN opam configuration
+# This is useful if you're using opam as it adds:
+#   - the correct directories to the PATH
+#   - auto-completion for the opam binary
+# This section can be safely removed at any time if needed.
+[[ ! -r '/home/june/.opam/opam-init/init.zsh' ]] || source '/home/june/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
+# END opam configuration
