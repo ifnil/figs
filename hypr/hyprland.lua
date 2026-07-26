@@ -22,6 +22,7 @@ hl.env("HYPRCURSOR_THEME", "rose-pine-hyprcursor")
 hl.env("HYPRCURSOR_SIZE", "28")
 
 hl.on("hyprland.start", function()
+	hl.exec_cmd("hyprpm reload -n")
 	hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
 	hl.exec_cmd("awww-daemon")
 	hl.exec_cmd("quickshell --no-duplicate -c topbar &")
@@ -34,10 +35,10 @@ hl.exec_cmd('gsettings set org.gnome.desktop.interface color-scheme "prefer-dark
 
 hl.config({
 	general = {
-		layout = "spiral",
-		border_size = 3,
-		gaps_in = 5,
-		gaps_out = { top = 5, right = 15, bottom = 15, left = 15 },
+		layout = "hy3",
+		border_size = 2,
+		gaps_in = 4,
+		gaps_out = { top = 4, right = 15, bottom = 15, left = 15 },
 		col = {
 			active_border = colors.background,
 		},
@@ -51,6 +52,14 @@ hl.config({
 
 	dwindle = {
 		-- preserve_split = true,
+	},
+
+	plugin = {
+		hy3 = {
+			autotile = {
+				enable = true,
+			},
+		},
 	},
 
 	decoration = {
