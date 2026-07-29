@@ -15,10 +15,11 @@ hl.monitor({ output = "HDMI-A-1", mode = "1920x1200@60", position = "-1920x0", s
 
 -- external
 hl.monitor({ output = "DP-1", mode = "preferred", position = "-2560x0", scale = 1 })
+-- no `default = true`: that reserves ws1 for DP-1 even when DP-1 is absent,
+-- so a laptop-only boot lands on ws2.
 hl.workspace_rule({
 	workspace = "1",
 	monitor = "DP-1",
-	default = true,
 })
 
 hl.config({
