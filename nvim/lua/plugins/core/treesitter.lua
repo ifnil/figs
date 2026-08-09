@@ -33,6 +33,10 @@ return {
 				"diff",
 				"ocaml",
 				"gdscript",
+				"go",
+				"gomod",
+				"gowork",
+				"gosum",
 			})
 		end,
 	},

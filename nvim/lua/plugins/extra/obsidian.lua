@@ -16,8 +16,16 @@ return {
 
 		workspaces = {
 			{
-				name = "notes",
-				path = "~/notes",
+				name = "school",
+				path = "~/notes/school",
+			},
+			{
+				name = "russian",
+				path = "~/notes/russian",
+			},
+			{
+				name = "research",
+				path = "~/notes/research",
 			},
 		},
 
@@ -26,7 +34,7 @@ return {
 		},
 
 		footer = {
-			enabled = false,
+			enabled = true,
 		},
 
 		note_id_func = function(title)

@@ -1,5 +1,6 @@
 require("animation")
 require("layouts")
+require("hypr")
 
 local colors = {
 	-- background = "rgba(489c7acf)",
@@ -91,28 +92,28 @@ hl.device({
 	sensitivity = -0.5,
 })
 
-local submaps = require("submaps")
-hl.define_submap("(e)xit (l)ock s(u)spend (s)hutdown (r)eboot", submaps.machine_ctl)
-hl.define_submap("resize", submaps.resize)
-hl.define_submap("screenshot", submaps.screenshot)
+-- local submaps = require("submaps")
+-- hl.define_submap("(e)xit (l)ock s(u)spend (s)hutdown (r)eboot", submaps.machine_ctl)
+-- hl.define_submap("resize", submaps.resize)
+-- hl.define_submap("screenshot", submaps.screenshot)
 
 local function modmap(bind)
 	return mod .. " + " .. bind
 end
 
-hl.bind(modmap("R"), hl.dsp.submap("resize"))
+-- hl.bind(modmap("R"), hl.dsp.submap("resize"))
 hl.bind(modmap("SHIFT + E"), hl.dsp.submap("(e)xit (l)ock s(u)spend (s)hutdown (r)eboot"))
 hl.bind(alt_mod .. "+ SHIFT + 4", hl.dsp.submap("screenshot")) -- was `ALT&Shift_L, 4`
 
-hl.bind(modmap("SHIFT + mouse:273"), hl.dsp.window.resize(), { mouse = true }) -- Resize, Mod+Shift+RMB
-hl.bind(modmap("SHIFT + mouse:272"), hl.dsp.window.drag(), { mouse = true }) -- Move,   Mod+Shift+LMB
-hl.bind(modmap("mouse:273"), hl.dsp.window.resize(), { mouse = true }) -- Resize, Mod+RMB
-hl.bind(modmap("mouse:272"), hl.dsp.window.drag(), { mouse = true }) -- Move,   Mod+LMB
+-- hl.bind(modmap("SHIFT + mouse:273"), hl.dsp.window.resize(), { mouse = true }) -- Resize, Mod+Shift+RMB
+-- hl.bind(modmap("SHIFT + mouse:272"), hl.dsp.window.drag(), { mouse = true }) -- Move,   Mod+Shift+LMB
+-- hl.bind(modmap("mouse:273"), hl.dsp.window.resize(), { mouse = true }) -- Resize, Mod+RMB
+-- hl.bind(modmap("mouse:272"), hl.dsp.window.drag(), { mouse = true }) -- Move,   Mod+LMB
 
-hl.bind(modmap("Return"), hl.dsp.exec_cmd(term))
-hl.bind(modmap("SHIFT + Q"), hl.dsp.window.close())
-hl.bind(modmap("D"), hl.dsp.exec_cmd(rofi))
-hl.bind(modmap("SHIFT + C"), hl.dsp.exec_cmd("hyprctl reload"))
+-- hl.bind(modmap("Return"), hl.dsp.exec_cmd(term))
+-- hl.bind(modmap("SHIFT + Q"), hl.dsp.window.close())
+-- hl.bind(modmap("D"), hl.dsp.exec_cmd(rofi))
+-- hl.bind(modmap("SHIFT + C"), hl.dsp.exec_cmd("hyprctl reload"))
 hl.bind(alt_mod .. "+ e", hl.dsp.exec_cmd("rofimoji -a copy"))
 
 hl.bind(
@@ -137,36 +138,36 @@ hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl set 5%-"), { rep
 hl.bind("XF86KbdBrightnessUp", hl.dsp.exec_cmd("brightnessctl --device='smc::kbd_backlight' set +5%"))
 hl.bind("XF86KbdBrightnessDown", hl.dsp.exec_cmd("brightnessctl --device='smc::kbd_backlight' set 5%-"))
 
-hl.bind(modmap("XF86AudioRaiseVolume"), hl.dsp.focus({ workspace = "+1" }))
-hl.bind(modmap("XF86AudioLowerVolume"), hl.dsp.focus({ workspace = "-1" }))
-hl.bind(modmap("SHIFT + XF86AudioRaiseVolume"), hl.dsp.layout("swapnext"), { bypass = true })
-hl.bind(modmap("SHIFT + XF86AudioLowerVolume"), hl.dsp.layout("swapnext prev"), { bypass = true })
+-- hl.bind(modmap("XF86AudioRaiseVolume"), hl.dsp.focus({ workspace = "+1" }))
+-- hl.bind(modmap("XF86AudioLowerVolume"), hl.dsp.focus({ workspace = "-1" }))
+-- hl.bind(modmap("SHIFT + XF86AudioRaiseVolume"), hl.dsp.layout("swapnext"), { bypass = true })
+-- hl.bind(modmap("SHIFT + XF86AudioLowerVolume"), hl.dsp.layout("swapnext prev"), { bypass = true })
 
 -- Window focus (movefocus in a direction)
-hl.bind(modmap("Left"), hl.dsp.focus({ direction = "l" }))
-hl.bind(modmap("Down"), hl.dsp.focus({ direction = "d" }))
-hl.bind(modmap("Up"), hl.dsp.focus({ direction = "u" }))
-hl.bind(modmap("Right"), hl.dsp.focus({ direction = "r" }))
-hl.bind(modmap("H"), hl.dsp.focus({ direction = "l" }))
-hl.bind(modmap("J"), hl.dsp.focus({ direction = "d" }))
-hl.bind(modmap("K"), hl.dsp.focus({ direction = "u" }))
-hl.bind(modmap("L"), hl.dsp.focus({ direction = "r" }))
+-- hl.bind(modmap("Left"), hl.dsp.focus({ direction = "l" }))
+-- hl.bind(modmap("Down"), hl.dsp.focus({ direction = "d" }))
+-- hl.bind(modmap("Up"), hl.dsp.focus({ direction = "u" }))
+-- hl.bind(modmap("Right"), hl.dsp.focus({ direction = "r" }))
+-- hl.bind(modmap("H"), hl.dsp.focus({ direction = "l" }))
+-- hl.bind(modmap("J"), hl.dsp.focus({ direction = "d" }))
+-- hl.bind(modmap("K"), hl.dsp.focus({ direction = "u" }))
+-- hl.bind(modmap("L"), hl.dsp.focus({ direction = "r" }))
 
 -- Move tiled windows (movewindow in a direction)
-hl.bind(modmap("SHIFT + Left"), hl.dsp.window.move({ direction = "l" }))
-hl.bind(modmap("SHIFT + Down"), hl.dsp.window.move({ direction = "d" }))
-hl.bind(modmap("SHIFT + Up"), hl.dsp.window.move({ direction = "u" }))
-hl.bind(modmap("SHIFT + Right"), hl.dsp.window.move({ direction = "r" }))
-hl.bind(modmap("SHIFT + H"), hl.dsp.window.move({ direction = "l" }))
-hl.bind(modmap("SHIFT + J"), hl.dsp.window.move({ direction = "d" }))
-hl.bind(modmap("SHIFT + K"), hl.dsp.window.move({ direction = "u" }))
-hl.bind(modmap("SHIFT + L"), hl.dsp.window.move({ direction = "r" }))
+-- hl.bind(modmap("SHIFT + Left"), hl.dsp.window.move({ direction = "l" }))
+-- hl.bind(modmap("SHIFT + Down"), hl.dsp.window.move({ direction = "d" }))
+-- hl.bind(modmap("SHIFT + Up"), hl.dsp.window.move({ direction = "u" }))
+-- hl.bind(modmap("SHIFT + Right"), hl.dsp.window.move({ direction = "r" }))
+-- hl.bind(modmap("SHIFT + H"), hl.dsp.window.move({ direction = "l" }))
+-- hl.bind(modmap("SHIFT + J"), hl.dsp.window.move({ direction = "d" }))
+-- hl.bind(modmap("SHIFT + K"), hl.dsp.window.move({ direction = "u" }))
+-- hl.bind(modmap("SHIFT + L"), hl.dsp.window.move({ direction = "r" }))
 
 -- Move current workspace to another monitor
-hl.bind(modmap("ALT + Left"), hl.dsp.workspace.move({ monitor = "-1" }))
-hl.bind(modmap("ALT + Down"), hl.dsp.workspace.move({ monitor = "-1" }))
-hl.bind(modmap("ALT + Right"), hl.dsp.workspace.move({ monitor = "+1" }))
-hl.bind(modmap("ALT + Up"), hl.dsp.workspace.move({ monitor = "+1" }))
+-- hl.bind(modmap("ALT + Left"), hl.dsp.workspace.move({ monitor = "-1" }))
+-- hl.bind(modmap("ALT + Down"), hl.dsp.workspace.move({ monitor = "-1" }))
+-- hl.bind(modmap("ALT + Right"), hl.dsp.workspace.move({ monitor = "+1" }))
+-- hl.bind(modmap("ALT + Up"), hl.dsp.workspace.move({ monitor = "+1" }))
 
 -- Workspaces: switch (mod + N) and move-silent (mod + SHIFT + N)
 for i = 1, 10 do
@@ -174,11 +175,6 @@ for i = 1, 10 do
 	hl.bind(modmap(key), hl.dsp.focus({ workspace = i }))
 	hl.bind(modmap("SHIFT + " .. key), hl.dsp.window.move({ workspace = i, follow = false }))
 end
-
-hl.bind(modmap("SHIFT + space"), hl.dsp.window.float({ action = "toggle" })) -- Toggle floating
-hl.bind(modmap("W"), hl.dsp.group.toggle()) -- Group/ungroup (tabbed container)
-hl.bind(modmap("F"), hl.dsp.window.fullscreen()) -- Toggle fullscreen
-hl.bind(modmap("E"), hl.dsp.layout("togglesplit")) -- Toggle split orientation (dwindle)
 
 local hostname = (function()
 	local h = os.getenv("HOSTNAME")

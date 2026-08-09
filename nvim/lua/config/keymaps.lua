@@ -30,6 +30,14 @@ map({ "n", "t" }, "<C-/>", function() require("snacks").terminal() end, { desc =
 -- stylua: ignore
 map({ "n", "t" }, "<C-_>", function() require("snacks").terminal() end, { desc = "terminal" })
 
+vim.keymap.set("n", "k", function()
+	return vim.v.count > 0 and "k" or (vim.wo.wrap and "gk" or "k")
+end, { expr = true, silent = true })
+
+vim.keymap.set("n", "j", function()
+	return vim.v.count > 0 and "j" or (vim.wo.wrap and "gj" or "j")
+end, { expr = true, silent = true })
+
 map("v", "<", "<gv")
 map("v", ">", ">gv")
 

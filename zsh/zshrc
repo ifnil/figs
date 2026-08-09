@@ -1,6 +1,8 @@
 typeset -U path
 
+##
 # VARIABLES
+##
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 ZSH_COMPDUMP="${HOME}/.cache/zsh/zcompdump-${ZSH_VERSION}"
@@ -12,7 +14,9 @@ source "$HOME/.keys"
 # system context
 source /etc/os-release
 
+##
 # EXPORTS
+##
 if [[ "$ID" == "arch" ]]; then
   export HOSTNAME=$(hostnamectl hostname | tr -d '\n')
 elif [[ "$ID" == "gentoo" ]]; then
@@ -28,17 +32,22 @@ export FIGS="~/figs"
 export QML_IMPORT_PATH=/usr/lib64/qt6/qml
 export ZVM_PATH="$HOME/.local/zvm"
 export ZVM_INSTALL="$HOME/.local/zvm/self"
+export CARGO_HOME="$HOME/.local/cargo"
 
+##
 # PATH CONFIG
-path+=("$HOME/.local/cargo/bin")
-path+=("$HOME/go/bin")
+##
 path+=("$HOME/.local/bin")
+path+=("$HOME/go/bin")
+path+=("$HOME/.local/cargo/bin")
 path+=("$HOME/.local/zvm/self")
 path+=("$HOME/.local/zvm/bin")
-path+=("$PYENV_ROOT/bin")
 path+=("$HOME/.emacs.d/bin")
+path+=("$PYENV_ROOT/bin")
 
+##
 # PLUGINS
+##
 plugins=(
   git fzf docker docker-compose
   eza colorize kitty urltools z
@@ -46,18 +55,12 @@ plugins=(
   zsh-completions ssh-agent colored-man-pages
 )
 
-# ALIASES
-alias setwall="awww img"
-alias ssh="kitten ssh"
-alias jq="jq -C"
-alias qmlls="qmlls6"
-alias cj="z"
-alias jp="z"
-alias makeport="nvim /etc/portage/make.conf"
-alias xxx="nvim /etc/portage/package.use/xxxx"
-alias et="emacsclient -t -a \"\""
-alias emacs="emacsclient -t -a \"\""
-alias dom="emacsclient -t -a \"\""
+##
+# FUNCTIONS
+##
+function cdmk() {
+  mkdir -p "$1" && cd "$1"
+}
 
 function vpn() {
   case "$1" in
@@ -74,6 +77,28 @@ function mcd() {
   mkdir -p "$1" && cd "$1"
 }
 
+##
+# ALIASES
+##
+alias qmlls="qmlls6"
+alias ssh="kitten ssh"
+alias jq="jq -C"
+alias jp="z"
+alias setwall="awww img"
+
+## emacs
+alias et="emacsclient -t -a \"\""
+alias emacs="emacsclient -t -a \"\""
+alias dom="emacsclient -t -a \"\""
+
+# cd to dir in clipboard (needs to be grabbed from yazi keybind cd)
+alias yazii="yazi && cd $(wl-paste)"
+
+
+
+##
+## MISC
+##
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.config/oh-my-zsh}/custom}/plugins/zsh-completions/src
 [[ -d $(dirname "$ZSH_COMPDUMP") ]] || mkdir -p $(dirname "$ZSH_COMPDUMP")
 autoload -U compinit && compinit
@@ -85,11 +110,5 @@ eval "$(pyenv init - zsh)"
 # Point apps (ProtonVPN keyring, Secret Service) at the user D-Bus session bus
 # export DBUS_SESSION_BUS_ADDRESS="unix:path=${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/bus"
 
-
-# BEGIN opam configuration
-# This is useful if you're using opam as it adds:
-#   - the correct directories to the PATH
-#   - auto-completion for the opam binary
-# This section can be safely removed at any time if needed.
+# ocaml
 [[ ! -r '/home/june/.opam/opam-init/init.zsh' ]] || source '/home/june/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
-# END opam configuration

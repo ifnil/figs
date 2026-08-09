@@ -10,6 +10,7 @@ return {
 		picker = { enabled = true },
 		words = { enabled = true },
 		explorer = { enabled = true },
+		terminal = { enabled = true },
 		toggle = {
 			wk_desc = {
 				enabled = "disable ",
