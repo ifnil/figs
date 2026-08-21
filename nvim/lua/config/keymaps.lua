@@ -56,6 +56,7 @@ require("keymaps.session")
 require("keymaps.toggle")
 require("keymaps.org")
 require("keymaps.projects")
+require("keymaps.todo")
 
 -- keymaps
 vim.keymap.set({ "x", "o" }, "am", function()

@@ -8,6 +8,7 @@ max_width = 60000
 [plugin]
 prepend_previewers = [
   { mime = "application/{*zip,tar,bzip2,7z*,rar,xz,zstd,java-archive}", run  = "ouch" },
+  { mime = "application/{x-executable,x-pie-executable,x-sharedlib,x-object,x-mach-binary,x-dosexec,vnd.microsoft.portable-executable}", run = "radare" },
 ]
 
 [opener]

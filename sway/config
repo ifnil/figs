@@ -20,6 +20,7 @@ gaps top   -5
 
 # class                 border   bg       text    indicator childborder
 client.focused          $accent  $accent  #000000 $accent   $accent
+client.unfocused        #000000  #000000  #ffffff #000000   #000000
 
 shadows enable
 shadow_blur_radius 13
@@ -39,8 +40,6 @@ input type:touchpad {
 input "2:10:TPPS/2_Elan_TrackPoint" {
     pointer_accel -0.5
 }
-
-seat * xcursor_theme rose-pine 28
 
 for_window [app_id="^dunst$"] floating enable
 
@@ -163,5 +162,4 @@ mode "screenshot" {
 }
 bindsym $alt+Shift+4 mode "screenshot"
 
-# --- Host-specific ---
 include ~/.config/sway/hosts/$(hostname).conf

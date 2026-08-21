@@ -20,9 +20,10 @@ Row {
 
 			property bool isActive: modelData.focused
 			property bool isUrgent: modelData.urgent ?? false
+			property var activeIcons: ["󰲠", "󰲢", "󰲤", "󰲦", "󰲨", "󰲪", "󰲬", "󰲮", "󰲰", "󰲳"]
 
 			implicitWidth: label.implicitWidth + 6
-			implicitHeight: label.implicitHeight + 6
+			implicitHeight: isActive ? label.implicitHeight + 4 : label.implicitHeight + 6
 
 			color: isUrgent ? "#6c303b" : "transparent"
 
@@ -30,7 +31,7 @@ Row {
 				id: label
 				anchors.centerIn: parent
 
-				text: parent.modelData.number
+				text: parent.isActive ? parent.activeIcons[parent.modelData.number - 1] : parent.modelData.number
 				color: parent.isActive ? root.activeColor : "#ffffff"
 				opacity: parent.isActive ? 1.0 : 0.3
 

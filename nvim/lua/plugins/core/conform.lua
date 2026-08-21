@@ -55,6 +55,7 @@ return {
 			nix = { "alejandra" },
 			zig = { "zig" },
 			ocaml = { "ocamlformat" },
+			elm = { "elm-format" },
 		},
 	},
 }
