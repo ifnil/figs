@@ -58,7 +58,6 @@ Row {
 			QsMenuAnchor {
 				id: menuAnchor
 				menu: entry.modelData.menu
-				anchor.window: QsWindow.window
 				anchor.item: entry
 				anchor.rect.y: entry.height
 			}
