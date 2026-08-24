@@ -1,24 +1,40 @@
-import Quickshell
+pragma ComponentBehavior: Bound
+
+import Quickshell.Hyprland
 import QtQuick
 import QtQuick.Layouts
 
-// Shows the active submap (hyprland) / mode (sway) name; hidden when none.
-Loader {
+// Shows the active hyprland submap name; hidden when none.
+ModuleBox {
 	id: root
 
 	property color accentColor: "#489c7a"
 	property string fontFamily: "Tamzen"
 	property int fontSize: 14
-
-	readonly property bool isSway: !!Quickshell.env("SWAYSOCK")
+	property string submap: ""
 
 	Layout.alignment: Qt.AlignVCenter
-	visible: item?.active ?? false
+	visible: submap !== ""
 
-	source: isSway ? "SwaySubmap.qml" : "HyprSubmap.qml"
-	onLoaded: {
-		item.accentColor = Qt.binding(() => root.accentColor);
-		item.fontFamily = Qt.binding(() => root.fontFamily);
-		item.fontSize = Qt.binding(() => root.fontSize);
+	Text {
+		text: root.submap
+		color: root.accentColor
+
+		font {
+			family: root.fontFamily
+			pixelSize: root.fontSize
+		}
+	}
+
+	Connections {
+		target: Hyprland
+
+		function onRawEvent(event) {
+			if (event.name !== "submap")
+				return;
+
+			// data is the submap name, empty string on reset
+			root.submap = event.data;
+		}
 	}
 }

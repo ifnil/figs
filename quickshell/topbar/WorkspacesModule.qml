@@ -1,9 +1,9 @@
-import Quickshell
+pragma ComponentBehavior: Bound
+
+import Quickshell.Hyprland
 import QtQuick
 import QtQuick.Layouts
 
-// Picks the compositor-specific workspace list at runtime so the same
-// config works under both hyprland and sway.
 ModuleBox {
 	id: root
 
@@ -11,16 +11,40 @@ ModuleBox {
 	property string fontFamily: "Tamzen"
 	property int fontSize: 14
 
-	readonly property bool isSway: !!Quickshell.env("SWAYSOCK")
-
 	Layout.alignment: Qt.AlignVCenter
 
-	Loader {
-		source: root.isSway ? "SwayWorkspaces.qml" : "HyprWorkspaces.qml"
-		onLoaded: {
-			item.activeColor = Qt.binding(() => root.activeColor);
-			item.fontFamily = Qt.binding(() => root.fontFamily);
-			item.fontSize = Qt.binding(() => root.fontSize);
+	Repeater {
+		model: Hyprland.workspaces
+
+		Rectangle {
+			required property var modelData
+
+			property bool isActive: Hyprland.focusedWorkspace?.id == modelData.id
+			property bool isUrgent: modelData.urgent ?? false
+
+			implicitWidth: label.implicitWidth + 6
+			implicitHeight: label.implicitHeight + 6
+
+			color: isUrgent ? "#6c303b" : "transparent"
+
+			Text {
+				id: label
+				anchors.centerIn: parent
+
+				text: parent.modelData.id
+				color: parent.isActive ? root.activeColor : "#ffffff"
+				opacity: parent.isActive ? 1.0 : 0.3
+
+				font {
+					family: root.fontFamily
+					pixelSize: root.fontSize
+				}
+			}
+
+			MouseArea {
+				anchors.fill: parent
+				onClicked: parent.modelData.activate()
+			}
 		}
 	}
 }

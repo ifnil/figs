@@ -8,18 +8,17 @@ hl.env("XDG_RUNTIME_DIR", os.getenv("XDG_RUNTIME_DIR") or "/run/user/1000")
 hl.env("DBUS_SESSION_BUS_ADDRESS", "unix:path=" .. (os.getenv("XDG_RUNTIME_DIR") or "/run/user/1000") .. "/bus")
 
 -- laptop
-hl.monitor({ output = "eDP-1", mode = "1920x1200@60", position = "0x0", scale = 1 })
+hl.monitor({ output = "eDP-1", mode = "preferred", position = "0x0", scale = 1 })
 
 -- portable monitor
-hl.monitor({ output = "HDMI-A-1", mode = "1920x1200@60", position = "-1920x0", scale = 1 })
+hl.monitor({ output = "HDMI-A-1", mode = "1920x1080@60", position = "-1920x0", scale = 1 })
 
 -- external
 hl.monitor({ output = "DP-1", mode = "preferred", position = "-2560x0", scale = 1 })
--- no `default = true`: that reserves ws1 for DP-1 even when DP-1 is absent,
--- so a laptop-only boot lands on ws2.
+
 hl.workspace_rule({
 	workspace = "1",
-	monitor = "DP-1",
+	monitor = "eDP-1",
 })
 
 hl.config({
