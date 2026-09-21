@@ -1,6 +1,11 @@
 configuration {
   markup: true;
+  modi: "combi";
   combi-display-format: "<span foreground='#2e3633'>{mode}</span> {text}";
+  combi-modi: "drun,run,ssh,window,web:~/.config/rofi/scripts/web.sh";
+  terminal: "kitty";
+  show-icons: true;
+  lines: 10;
 }
 
 @theme "./tiramisu.rasi"

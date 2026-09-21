@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Sway (figs)
+Comment=Sway via the start-sway wrapper, which sets the session env vars
+Exec=/home/june/figs/sway/scripts/start-sway
+Type=Application
+DesktopNames=sway;wlroots

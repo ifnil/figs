@@ -16,7 +16,7 @@ map({ "n", "x", "o" }, "s", function() require("flash").jump() end, { desc = "fl
 map({ "n", "v", "x" }, "<Esc>", "<cmd>noh<cr><Esc>", { desc = "return to normal", noremap = true })
 
 map("n", "<leader><space>", "<cmd>FzfLua files<cr>", { desc = "find files" })
-map("n", "<leader>N", "<cmd>NoiceFzf<cr>", { desc = "notifications" })
+map("n", "<leader>N", "<cmd>NoiceAll<cr>", { desc = "notifications" })
 map("n", "<A-j>", "<cmd>execute 'move .+' . v:count1<cr>==", { desc = "Move Down" })
 map("n", "<A-k>", "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = "Move Up" })
 map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
@@ -57,6 +57,8 @@ require("keymaps.toggle")
 require("keymaps.org")
 require("keymaps.projects")
 require("keymaps.todo")
+require("keymaps.debugging")
+require("keymaps.golang")
 
 -- keymaps
 vim.keymap.set({ "x", "o" }, "am", function()
@@ -117,6 +119,9 @@ vim.keymap.set({ "n", "x", "o" }, "[M", function()
 end)
 vim.keymap.set({ "n", "x", "o" }, "[]", function()
 	require("nvim-treesitter-textobjects.move").goto_previous_end("@class.outer", "textobjects")
+end)
+vim.keymap.set({ "x", "o" }, "ia", function()
+	require("nvim-treesitter-textobjects.select").select_textobject("@attribute", "textobjects")
 end)
 
 -- Go to either the start or the end, whichever is closer.

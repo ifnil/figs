@@ -8,8 +8,8 @@ killall xdg-desktop-portal-wlr
 killall xdg-desktop-portal
 logger 'killed all xdg-desktop'
 sleep 1
-/usr/libexec/xdg-desktop-portal-wlr &
+/usr/lib/xdg-desktop-portal-wlr &
 logger 'xdg-desktop-portal-wlr started'
 sleep 2
-/usr/libexec/xdg-desktop-portal &
+/usr/lib/xdg-desktop-portal &
 logger 'xdg-desktop-portal started'

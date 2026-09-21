@@ -1,11 +1,25 @@
 require("animation")
 require("layouts")
-require("hypr")
+require("binds")
+
+-- hy3 comes from `hyprpm reload` in the start hook, so the first pass through
+-- this file never sees it; a successful load triggers a config reload, and
+-- it shows up on that pass. if it never does (failed build, stale headers),
+-- fall back to broke.lua's group-based imitation.
+local has_hy3 = (function()
+	for _, plugin in ipairs(hl.get_loaded_plugins()) do
+		if plugin.name == "hy3" then
+			return true
+		end
+	end
+	return false
+end)()
 
 local colors = {
 	-- background = "rgba(489c7acf)",
 	-- background = "rgba(eeed7bcf)",
-	background = "rgba(00ffb3fc)",
+	-- background = "rgba(00ffb3fc)",
+	background = "rgba(4f2833ff)",
 }
 
 local term = "kitty"
@@ -24,19 +38,22 @@ hl.env("HYPRCURSOR_SIZE", "28")
 
 hl.on("hyprland.start", function()
 	hl.exec_cmd("hyprpm reload -n")
-	hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
 	hl.exec_cmd("awww-daemon")
 	hl.exec_cmd("quickshell --no-duplicate -c topbar &")
 	hl.exec_cmd("dunst &")
 	hl.exec_cmd("bongocat --config ~/.config/bongocat/bongocat.conf --watch-config")
 end)
 
-hl.exec_cmd('gsettings set org.gnome.desktop.interface gtk-theme "Arc-Dark"')
+local gtk_theme = "Arc-Dark"
+local icon_theme = "Qogir-Manjaro-Dark"
+
+hl.exec_cmd('gsettings set org.gnome.desktop.interface gtk-theme "' .. gtk_theme .. '"')
+hl.exec_cmd('gsettings set org.gnome.desktop.interface icon-theme "' .. icon_theme .. '"')
 hl.exec_cmd('gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"')
 
 hl.config({
 	general = {
-		layout = "hy3",
+		layout = has_hy3 and "hy3" or "dwindle",
 		border_size = 2,
 		gaps_in = 4,
 		gaps_out = { top = 4, right = 15, bottom = 15, left = 15 },
@@ -51,18 +68,6 @@ hl.config({
 		slave_count_for_center_master = 0,
 	},
 
-	dwindle = {
-		-- preserve_split = true,
-	},
-
-	plugin = {
-		hy3 = {
-			autotile = {
-				enable = true,
-			},
-		},
-	},
-
 	decoration = {
 		rounding = 0,
 		shadow = {
@@ -72,6 +77,7 @@ hl.config({
 	},
 
 	input = {
+		repeat_delay = 350,
 		kb_options = "caps:escape_shifted_capslock",
 		kb_layout = "us,ru",
 		kb_variant = ",phonetic_winkeys",
@@ -81,9 +87,39 @@ hl.config({
 	},
 })
 
+if has_hy3 then
+	hl.config({
+		plugin = {
+			hy3 = {
+				autotile = {
+					enable = true,
+				},
+			},
+		},
+	})
+else
+	-- after binds.lua: broke.lua replaces some of its binds
+	require("broke")
+end
+
+-- GTK/Xfce apps (thunar) persist "was maximized" across restarts and re-request
+-- it on map. hy3 honours that as fullscreen mode 1, so the window covers the
+-- workspace above the tiles and won't join the layout until it's moved.
+hl.window_rule({
+	name = "suppress-maximize-events",
+	match = { class = ".*" },
+	suppress_event = "maximize",
+})
+
 hl.window_rule({
 	name = "float-dunst",
 	match = { class = "^(dunst)$" },
+	float = true,
+})
+
+hl.window_rule({
+	name = "float-golf",
+	match = { title = "(golf)$" },
 	float = true,
 })
 
@@ -92,28 +128,13 @@ hl.device({
 	sensitivity = -0.5,
 })
 
--- local submaps = require("submaps")
--- hl.define_submap("(e)xit (l)ock s(u)spend (s)hutdown (r)eboot", submaps.machine_ctl)
--- hl.define_submap("resize", submaps.resize)
--- hl.define_submap("screenshot", submaps.screenshot)
-
 local function modmap(bind)
 	return mod .. " + " .. bind
 end
 
--- hl.bind(modmap("R"), hl.dsp.submap("resize"))
 hl.bind(modmap("SHIFT + E"), hl.dsp.submap("(e)xit (l)ock s(u)spend (s)hutdown (r)eboot"))
 hl.bind(alt_mod .. "+ SHIFT + 4", hl.dsp.submap("screenshot")) -- was `ALT&Shift_L, 4`
 
--- hl.bind(modmap("SHIFT + mouse:273"), hl.dsp.window.resize(), { mouse = true }) -- Resize, Mod+Shift+RMB
--- hl.bind(modmap("SHIFT + mouse:272"), hl.dsp.window.drag(), { mouse = true }) -- Move,   Mod+Shift+LMB
--- hl.bind(modmap("mouse:273"), hl.dsp.window.resize(), { mouse = true }) -- Resize, Mod+RMB
--- hl.bind(modmap("mouse:272"), hl.dsp.window.drag(), { mouse = true }) -- Move,   Mod+LMB
-
--- hl.bind(modmap("Return"), hl.dsp.exec_cmd(term))
--- hl.bind(modmap("SHIFT + Q"), hl.dsp.window.close())
--- hl.bind(modmap("D"), hl.dsp.exec_cmd(rofi))
--- hl.bind(modmap("SHIFT + C"), hl.dsp.exec_cmd("hyprctl reload"))
 hl.bind(alt_mod .. "+ e", hl.dsp.exec_cmd("rofimoji -a copy"))
 
 hl.bind(
@@ -127,47 +148,28 @@ hl.bind(
 	{ repeating = true, locked = true }
 )
 hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), { locked = true })
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("amixer sset Master 2%+"), { locked = true, repeating = true })
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("amixer sset Master 2%-"), { locked = true, repeating = true })
-hl.bind("XF86AudioMute", hl.dsp.exec_cmd("amixer sset Master toggle"))
 hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"))
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"))
 hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"))
 hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl set +5%"), { repeating = true })
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl set 5%-"), { repeating = true })
-hl.bind("XF86KbdBrightnessUp", hl.dsp.exec_cmd("brightnessctl --device='smc::kbd_backlight' set +5%"))
-hl.bind("XF86KbdBrightnessDown", hl.dsp.exec_cmd("brightnessctl --device='smc::kbd_backlight' set 5%-"))
 
--- hl.bind(modmap("XF86AudioRaiseVolume"), hl.dsp.focus({ workspace = "+1" }))
--- hl.bind(modmap("XF86AudioLowerVolume"), hl.dsp.focus({ workspace = "-1" }))
--- hl.bind(modmap("SHIFT + XF86AudioRaiseVolume"), hl.dsp.layout("swapnext"), { bypass = true })
--- hl.bind(modmap("SHIFT + XF86AudioLowerVolume"), hl.dsp.layout("swapnext prev"), { bypass = true })
+-- the keyboard backlight LED is named per-vendor (tpacpi:: on ThinkPads,
+-- smc:: on Apple), so bind whichever one this box actually exposes.
+local kbd_backlight = (function()
+	for _, name in ipairs({ "tpacpi::kbd_backlight", "smc::kbd_backlight" }) do
+		local f = io.open("/sys/class/leds/" .. name .. "/brightness", "r")
+		if f then
+			f:close()
+			return name
+		end
+	end
+end)()
 
--- Window focus (movefocus in a direction)
--- hl.bind(modmap("Left"), hl.dsp.focus({ direction = "l" }))
--- hl.bind(modmap("Down"), hl.dsp.focus({ direction = "d" }))
--- hl.bind(modmap("Up"), hl.dsp.focus({ direction = "u" }))
--- hl.bind(modmap("Right"), hl.dsp.focus({ direction = "r" }))
--- hl.bind(modmap("H"), hl.dsp.focus({ direction = "l" }))
--- hl.bind(modmap("J"), hl.dsp.focus({ direction = "d" }))
--- hl.bind(modmap("K"), hl.dsp.focus({ direction = "u" }))
--- hl.bind(modmap("L"), hl.dsp.focus({ direction = "r" }))
-
--- Move tiled windows (movewindow in a direction)
--- hl.bind(modmap("SHIFT + Left"), hl.dsp.window.move({ direction = "l" }))
--- hl.bind(modmap("SHIFT + Down"), hl.dsp.window.move({ direction = "d" }))
--- hl.bind(modmap("SHIFT + Up"), hl.dsp.window.move({ direction = "u" }))
--- hl.bind(modmap("SHIFT + Right"), hl.dsp.window.move({ direction = "r" }))
--- hl.bind(modmap("SHIFT + H"), hl.dsp.window.move({ direction = "l" }))
--- hl.bind(modmap("SHIFT + J"), hl.dsp.window.move({ direction = "d" }))
--- hl.bind(modmap("SHIFT + K"), hl.dsp.window.move({ direction = "u" }))
--- hl.bind(modmap("SHIFT + L"), hl.dsp.window.move({ direction = "r" }))
-
--- Move current workspace to another monitor
--- hl.bind(modmap("ALT + Left"), hl.dsp.workspace.move({ monitor = "-1" }))
--- hl.bind(modmap("ALT + Down"), hl.dsp.workspace.move({ monitor = "-1" }))
--- hl.bind(modmap("ALT + Right"), hl.dsp.workspace.move({ monitor = "+1" }))
--- hl.bind(modmap("ALT + Up"), hl.dsp.workspace.move({ monitor = "+1" }))
+if kbd_backlight then
+	hl.bind("XF86KbdBrightnessUp", hl.dsp.exec_cmd("brightnessctl --device='" .. kbd_backlight .. "' set +5%"))
+	hl.bind("XF86KbdBrightnessDown", hl.dsp.exec_cmd("brightnessctl --device='" .. kbd_backlight .. "' set 5%-"))
+end
 
 -- Workspaces: switch (mod + N) and move-silent (mod + SHIFT + N)
 for i = 1, 10 do

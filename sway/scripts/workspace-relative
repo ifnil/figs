@@ -1,0 +1,19 @@
+#!/bin/sh
+# Relative workspace switch by number, matching hyprland's `workspace ±1`:
+# moves to the numbered workspace even when it is empty, where sway's built-in
+# `workspace next`/`prev` skips to the next workspace that already exists.
+
+case "$1" in
+	+1) delta=1 ;;
+	-1) delta=-1 ;;
+	*) echo "usage: ${0##*/} +1|-1" >&2; exit 1 ;;
+esac
+
+current=$(swaymsg -t get_workspaces -r | jq '.[] | select(.focused).num')
+[ -n "$current" ] || exit 1
+
+# named workspaces report num -1; clamp so both cases land on 1
+target=$((current + delta))
+[ "$target" -lt 1 ] && target=1
+
+exec swaymsg workspace number "$target"

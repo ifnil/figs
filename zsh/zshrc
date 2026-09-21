@@ -77,6 +77,8 @@ function mcd() {
   mkdir -p "$1" && cd "$1"
 }
 
+
+
 ##
 # ALIASES
 ##
@@ -91,10 +93,6 @@ alias et="emacsclient -t -a \"\""
 alias emacs="emacsclient -t -a \"\""
 alias dom="emacsclient -t -a \"\""
 
-# cd to dir in clipboard (needs to be grabbed from yazi keybind cd)
-alias yazii="yazi && cd $(wl-paste)"
-
-
 
 ##
 ## MISC
@@ -107,8 +105,6 @@ source $ZSH/oh-my-zsh.sh
 eval "$(starship init zsh)"
 eval "$(pyenv init - zsh)"
 
-# Point apps (ProtonVPN keyring, Secret Service) at the user D-Bus session bus
-# export DBUS_SESSION_BUS_ADDRESS="unix:path=${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/bus"
-
 # ocaml
-[[ ! -r '/home/june/.opam/opam-init/init.zsh' ]] || source '/home/june/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
+[[ ! -r '/home/june/.opam/opam-init/init.zsh' ]] \
+  || source '/home/june/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null

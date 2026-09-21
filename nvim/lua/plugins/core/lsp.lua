@@ -1,30 +1,31 @@
 return {
-	"mason-org/mason-lspconfig.nvim",
-	opts = {
-		ensure_installed = {
-			"lua_ls",
-			"bashls",
-			"clangd",
-			"yamlls",
-			"sqlls",
-			"pylsp",
-			"tailwindcss",
-			"html",
-			"ts_ls",
-			"cssls",
-		},
-	},
+  "mason-org/mason-lspconfig.nvim",
+  opts = {
+    ensure_installed = {
+      "lua_ls",
+      "bashls",
+      "clangd",
+      "yamlls",
+      "sqlls",
+      "pylsp",
+      "tailwindcss",
+      "html",
+      "ts_ls",
+      "cssls",
+      "gopls",
+    },
+  },
 
-	dependencies = {
-		{
-			"mason-org/mason.nvim",
-			opts = {
-				registries = {
-					"github:mason-org/mason-registry",
-					"github:Crashdummyy/mason-registry",
-				},
-			},
-		},
-		"neovim/nvim-lspconfig",
-	},
+  dependencies = {
+    {
+      "mason-org/mason.nvim",
+      opts = {
+        registries = {
+          "github:mason-org/mason-registry",
+          "github:Crashdummyy/mason-registry",
+        },
+      },
+    },
+    "neovim/nvim-lspconfig",
+  },
 }
