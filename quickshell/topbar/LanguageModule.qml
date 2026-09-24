@@ -4,12 +4,9 @@ import Quickshell.Hyprland
 import Quickshell.Io
 import QtQuick
 
-Rectangle {
+ModuleBox {
 	id: root
 
-	property color fontColor: "#fff"
-	property string fontFamily: "Tamzen"
-	property int fontSize: 14
 	property string layout: "en"
 
 	function shortLayout(value) {
@@ -31,34 +28,20 @@ Rectangle {
 			return;
 
 		const layouts = keyboard.layout.split(",");
-		root.layout = shortLayout(layouts[keyboard.active_layout_index] ?? keyboard.active_keymap);
+		layout = shortLayout(layouts[keyboard.active_layout_index] ?? keyboard.active_keymap);
 	}
 
-	color: "transparent"
-	implicitWidth: languageText.implicitWidth + 6
-	implicitHeight: languageText.implicitHeight + 6
-
+	onClicked: switchProcess.startDetached()
 	Component.onCompleted: refreshProcess.running = true
 
-	Text {
-		id: languageText
-
-		anchors.centerIn: parent
-		color: root.fontColor
+	BarText {
+		padding: 3
 		text: "󰌌  " + root.layout
-
-		font {
-			family: root.fontFamily
-			pixelSize: root.fontSize
-		}
-	}
-
-	MouseArea {
-		anchors.fill: parent
-		onClicked: switchProcess.startDetached()
 	}
 
 	Connections {
+		target: Hyprland
+
 		function onRawEvent(event) {
 			if (event.name !== "activelayout")
 				return;
@@ -66,8 +49,6 @@ Rectangle {
 			const data = event.parse(2);
 			root.layout = root.shortLayout(data[1] ?? data[0]);
 		}
-
-		target: Hyprland
 	}
 
 	Process {

@@ -2,48 +2,33 @@ pragma ComponentBehavior: Bound
 
 import Quickshell.Hyprland
 import QtQuick
-import QtQuick.Layouts
 
 ModuleBox {
-	id: root
-
-	property color activeColor: "#489c7a"
-	property string fontFamily: "Tamzen"
-	property int fontSize: 14
-
-	Layout.alignment: Qt.AlignVCenter
-
 	Repeater {
 		model: Hyprland.workspaces
 
 		Rectangle {
-			required property var modelData
+			id: workspace
 
-			property bool isActive: Hyprland.focusedWorkspace?.id == modelData.id
-			property bool isUrgent: modelData.urgent ?? false
+			required property HyprlandWorkspace modelData
+			readonly property bool active: Hyprland.focusedWorkspace?.id === modelData.id
 
 			implicitWidth: label.implicitWidth + 6
 			implicitHeight: label.implicitHeight + 6
+			color: modelData.urgent ? Theme.urgent : "transparent"
 
-			color: isUrgent ? "#6c303b" : "transparent"
-
-			Text {
+			BarText {
 				id: label
+
 				anchors.centerIn: parent
-
-				text: parent.modelData.id
-				color: parent.isActive ? root.activeColor : "#ffffff"
-				opacity: parent.isActive ? 1.0 : 0.3
-
-				font {
-					family: root.fontFamily
-					pixelSize: root.fontSize
-				}
+				color: workspace.active ? Theme.accent : Theme.fg
+				opacity: workspace.active ? 1.0 : 0.3
+				text: workspace.modelData.id
 			}
 
 			MouseArea {
 				anchors.fill: parent
-				onClicked: parent.modelData.activate()
+				onClicked: workspace.modelData.activate()
 			}
 		}
 	}

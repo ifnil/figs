@@ -8,33 +8,34 @@ set $mod Mod4
 set $alt Mod1
 set $term kitty
 set $rofi rofi -show combi
-set $accent #00ffb3fc
+set $accent #4f2833
 
+exec_always autotiling-rs
 
-default_border pixel 2
-default_floating_border pixel 2
+default_border pixel 1
+default_floating_border pixel 1
 
-gaps inner 5
+gaps inner 3
 gaps outer 2
 gaps top   -5
-
-# class                 border   bg       text    indicator childborder
-client.focused          $accent  $accent  #000000 $accent   $accent
-client.unfocused        #000000  #000000  #ffffff #000000   #000000
 
 # shadows enable
 # shadow_blur_radius 13
 # corner_radius 0
 
+# class                 border   bg       text    indicator childborder
+client.focused          $accent  $accent  #000000 $accent   $accent
+client.unfocused        #000000  #000000  #ffffff #000000   #000000
+
 input type:keyboard {
     repeat_delay 350
-    xkb_layout us,ru
-    xkb_variant ,phonetic_winkeys
-    xkb_options caps:escape_shifted_capslock
+    xkb_layout   us,ru
+    xkb_variant  ,phonetic_winkeys
+    xkb_options  caps:escape_shifted_capslock
 }
 
 input type:touchpad {
-    tap enabled
+    tap            enabled
     natural_scroll enabled
 }
 
@@ -42,14 +43,11 @@ input "2:10:TPPS/2_Elan_TrackPoint" {
     pointer_accel -0.5
 }
 
-for_window [app_id="^dunst$"] floating enable
+for_window [app_id="^dunst$"] floating      enable
+for_window [class="^Godot$"]  floating      enable
+for_window [class="^Godot$"   title="       -      Godot Engine$"] floating   disable
+for_window [class="^Godot$"   title="^Godot Engine -     Project   Manager$"] floating disable
 
-# godot: float child windows/popups, keep main editor + project manager tiled
-for_window [class="^Godot$"] floating enable
-for_window [class="^Godot$" title=" - Godot Engine$"] floating disable
-for_window [class="^Godot$" title="^Godot Engine - Project Manager$"] floating disable
-
-exec_always autotiling-rs
 
 exec dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 exec awww-daemon
@@ -71,13 +69,14 @@ bindsym $mod+backslash input type:keyboard xkb_switch_layout next
 
 bindsym --locked XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
 bindsym --locked XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
-bindsym --locked XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym --locked XF86AudioMute        exec wpctl set-mute   @DEFAULT_AUDIO_SINK@ toggle
 
 bindsym XF86AudioPlay         exec playerctl play-pause
 bindsym XF86AudioPrev         exec playerctl previous
 bindsym XF86AudioNext         exec playerctl next
 bindsym XF86MonBrightnessUp   exec brightnessctl set +5%
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+
 # LED is tpacpi:: on ThinkPads, smc:: on Apple; the glob matches either
 bindsym XF86KbdBrightnessUp   exec brightnessctl --device='*::kbd_backlight' set +5%
 bindsym XF86KbdBrightnessDown exec brightnessctl --device='*::kbd_backlight' set 5%-
@@ -122,6 +121,7 @@ bindsym $mod+7 workspace number 7
 bindsym $mod+8 workspace number 8
 bindsym $mod+9 workspace number 9
 bindsym $mod+0 workspace number 10
+
 bindsym $mod+Shift+1 move container to workspace number 1
 bindsym $mod+Shift+2 move container to workspace number 2
 bindsym $mod+Shift+3 move container to workspace number 3

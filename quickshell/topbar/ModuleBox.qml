@@ -1,25 +1,45 @@
-import Quickshell
 import Quickshell.Widgets
 import QtQuick
+import QtQuick.Layouts
 
+// Rounded box every bar module lives in. Content is laid out in a Row;
+// clicks, scrolls and hover on it are exposed as signals.
 WrapperRectangle {
-	property color bg: "#000"
-	default property alias content: inner.data
+	id: root
 
-	color: bg
+	default property alias content: inner.data
+	readonly property alias hovered: mouseArea.containsMouse
+
+	signal clicked(var event)
+	signal wheel(var event)
+
+	color: Theme.bg
 	radius: 4
+	Layout.alignment: Qt.AlignVCenter
 
 	leftMargin: 6
 	rightMargin: 6
 	topMargin: 2
 	bottomMargin: 3
 
-	// implicitWidth: inner.implicitWidth + 16
-	// implicitHeight: inner.implicitHeight + 4
+	// The wrapper only manages a single visual child, so the MouseArea is that
+	// child and holds the content. Interactive content (tray icons, workspaces)
+	// sits above it and gets its own clicks first.
+	MouseArea {
+		id: mouseArea
 
-	Row {
-		id: inner
-		anchors.centerIn: parent
-		spacing: 5
+		implicitWidth: inner.implicitWidth
+		implicitHeight: inner.implicitHeight
+		hoverEnabled: true
+		onClicked: event => root.clicked(event)
+		onWheel: event => {
+			event.accepted = false;
+			root.wheel(event);
+		}
+
+		Row {
+			id: inner
+			spacing: 5
+		}
 	}
 }
