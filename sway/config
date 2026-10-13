@@ -1,83 +1,81 @@
-# Sway(FX) config — ported from hypr/hyprland.lua + submaps.lua + animation.lua
-#
-# Env vars (PATH, QT_QPA_PLATFORMTHEME, dbus fix, …) can't be set from sway
-# config — they live in scripts/start-sway. Point the session .desktop Exec
-# at that wrapper.
+###############################################################################
 
-set $mod Mod4
-set $alt Mod1
+set $mod  Mod4
+set $alt  Mod1
 set $term kitty
 set $rofi rofi -show combi
-set $accent #4f2833
+
+# set $accent #4f2833
+# set $accent #2bfba6
+# set $accent #e7b39f
+# set $accent #fc9e6555
+# set $accent #65fcc877
+
+set $accent #bb80e966
+set $unfocd #5f676a
+
+exec dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+exec awww-daemon
+exec qs -c topbar
+exec dunst
+
+exec gsettings set org.gnome.desktop.interface gtk-theme "Arc-Dark"
+exec gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
 
 exec_always autotiling-rs
 
-default_border pixel 1
-default_floating_border pixel 1
+default_border          pixel 3
+default_floating_border pixel 3
 
-gaps inner 3
-gaps outer 2
+gaps inner  6
+gaps outer  4
 gaps top   -5
 
-# shadows enable
-# shadow_blur_radius 13
-# corner_radius 0
-
-# class                 border   bg       text    indicator childborder
-client.focused          $accent  $accent  #000000 $accent   $accent
-client.unfocused        #000000  #000000  #ffffff #000000   #000000
+# class                 border    bg        text      indicator childborder
+client.focused          $accent   $accent   $accent   $accent   $accent
+client.unfocused        #5f676a   #5f676a   #5f676a   #5f676a   #5f676a
+client.focused_inactive $unfocd   $unfocd   $unfocd   $unfocd   $unfocd
+client.urgent           $unfocd   $unfocd   $unfocd   $unfocd   $unfocd
 
 input type:keyboard {
-    repeat_delay 350
-    xkb_layout   us,ru
-    xkb_variant  ,phonetic_winkeys
-    xkb_options  caps:escape_shifted_capslock
+  repeat_delay 350
+  xkb_layout   us,ru
+  xkb_variant  ,phonetic_winkeys
+  xkb_options  caps:escape_shifted_capslock
 }
 
 input type:touchpad {
-    tap            enabled
-    natural_scroll enabled
+  tap            enabled
+  natural_scroll enabled
 }
 
 input "2:10:TPPS/2_Elan_TrackPoint" {
     pointer_accel -0.5
 }
 
-for_window [app_id="^dunst$"] floating      enable
-for_window [class="^Godot$"]  floating      enable
-for_window [class="^Godot$"   title="       -      Godot Engine$"] floating   disable
-for_window [class="^Godot$"   title="^Godot Engine -     Project   Manager$"] floating disable
-
-
-exec dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-exec awww-daemon
-exec waybar
-exec dunst
-exec bongocat --config ~/.config/bongocat/bongocat.conf --watch-config
-exec gsettings set org.gnome.desktop.interface gtk-theme "Arc-Dark"
-exec gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
+for_window [app_id="^dunst$"] floating enable
+for_window [class="^Godot$"]  floating enable
 
 floating_modifier $mod normal
 
-bindsym $mod+Return  exec $term
 bindsym $mod+Shift+q kill
-bindsym $mod+d       exec $rofi
 bindsym $mod+Shift+c reload
+bindsym $mod+Return  exec $term
+bindsym $mod+d       exec $rofi
 bindsym $alt+e       exec rofimoji -a copy
-bindsym $mod+s       exec rofi -modi 'scripts:~/.local/bin' -show scripts
 bindsym $mod+backslash input type:keyboard xkb_switch_layout next
 
 bindsym --locked XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
 bindsym --locked XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
 bindsym --locked XF86AudioMute        exec wpctl set-mute   @DEFAULT_AUDIO_SINK@ toggle
 
-bindsym XF86AudioPlay         exec playerctl play-pause
-bindsym XF86AudioPrev         exec playerctl previous
-bindsym XF86AudioNext         exec playerctl next
+bindsym XF86AudioPlay         exec playerctl     play-pause
+bindsym XF86AudioPrev         exec playerctl     previous
+bindsym XF86AudioNext         exec playerctl     next
+
 bindsym XF86MonBrightnessUp   exec brightnessctl set +5%
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 
-# LED is tpacpi:: on ThinkPads, smc:: on Apple; the glob matches either
 bindsym XF86KbdBrightnessUp   exec brightnessctl --device='*::kbd_backlight' set +5%
 bindsym XF86KbdBrightnessDown exec brightnessctl --device='*::kbd_backlight' set 5%-
 
@@ -133,37 +131,10 @@ bindsym $mod+Shift+8 move container to workspace number 8
 bindsym $mod+Shift+9 move container to workspace number 9
 bindsym $mod+Shift+0 move container to workspace number 10
 
-bindsym $mod+Shift+space floating toggle
-bindsym $mod+w layout toggle tabbed split
-bindsym $mod+f fullscreen toggle
-bindsym $mod+e layout toggle split
+bindsym $mod+Shift+space floating   toggle
+bindsym $mod+w           layout     toggle tabbed split
+bindsym $mod+f           fullscreen toggle
+bindsym $mod+e           layout     toggle split
 
-mode "resize" {
-    bindsym h resize grow width 40px
-    bindsym l resize shrink width 40px
-    bindsym k resize shrink height 40px
-    bindsym j resize grow height 40px
-    bindsym Escape mode "default"
-    bindsym Return mode "default"
-}
-bindsym $mod+r mode "resize"
-
-mode "(e)xit (l)ock s(u)spend (s)hutdown (r)eboot" {
-    bindsym e exit
-    bindsym l exec 'swaylock', mode "default"
-    bindsym u exec 'loginctl suspend', mode "default"
-    bindsym s exec 'loginctl poweroff', mode "default"
-    bindsym r exec 'loginctl reboot', mode "default"
-    bindsym Escape mode "default"
-    bindsym Return mode "default"
-}
-bindsym $mod+Shift+e mode "(e)xit (l)ock s(u)spend (s)hutdown (r)eboot"
-
-mode "screenshot" {
-    bindsym p exec 'g=$(slurp) && f="$HOME/pictures/screenshots/$(date +%F_%H-%M-%S).png" && grim -g "$g" "$f" && wl-copy < "$f"', mode "default"
-    bindsym Escape mode "default"
-    bindsym Return mode "default"
-}
-bindsym $alt+Shift+4 mode "screenshot"
-
+include ~/.config/sway/submaps.conf
 include ~/.config/sway/hosts/$(hostname).conf

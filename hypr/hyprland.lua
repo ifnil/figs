@@ -112,6 +112,12 @@ hl.window_rule({
 })
 
 hl.window_rule({
+	name = "bitwarden-floating",
+	match = { class = "^(Bitwarden)$" },
+	float = true,
+})
+
+hl.window_rule({
 	name = "float-dunst",
 	match = { class = "^(dunst)$" },
 	float = true,

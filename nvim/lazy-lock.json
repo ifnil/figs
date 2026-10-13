@@ -1,4 +1,5 @@
 {
+  "Arduino-Nvim": { "branch": "main", "commit": "c9983b5ead3b2ce574d9bcb9708febad0f8ddbd7" },
   "Sierra": { "branch": "master", "commit": "2ec52616385b50f9580176d83209810549128402" },
   "autolist.nvim": { "branch": "main", "commit": "339499695d3be8c44aefef1d2516464758957004" },
   "blink.cmp": { "branch": "main", "commit": "101d71861f6a012f2be80e4100720874330d86aa" },
@@ -44,6 +45,7 @@
   "nvim-lspconfig": { "branch": "master", "commit": "684cb45c2faa24ce463b4fe9aaf011bfe1e0fb26" },
   "nvim-nio": { "branch": "master", "commit": "edcc181a875301dd21840189aa2f2f9ad69fc172" },
   "nvim-rip-substitute": { "branch": "main", "commit": "e3e1696bf934af7ae9130daabcafa07d9176d195" },
+  "nvim-strudel": { "branch": "main", "commit": "c4621036f54b6898e8cda3fe65501770d68c614b" },
   "nvim-treesitter": { "branch": "main", "commit": "8b98b4470eb326f1c7b50dae79f8c963568e5720" },
   "nvim-treesitter-context": { "branch": "master", "commit": "f3061339b8eaf9fda873600bc425b8d2d8502533" },
   "nvim-treesitter-textobjects": { "branch": "main", "commit": "898ee307df58f854d11cd7edd06472574d48014e" },

@@ -8,6 +8,7 @@ Usage: ./volumecontrol.sh -[device] <actions>
     i   -- input device
     o   -- output device
     p   -- player application
+    s   -- select output device (opens wiremix)
 ...valid actions are...
     i   -- increase volume [+2]
     d   -- decrease volume [-2]
@@ -68,21 +69,11 @@ action_volume() {
 }
 
 select_output() {
-  if [ "$@" ]; then
-    desc="$*"
-    device=$(pactl list sinks | grep -C2 -F "Description: $desc" | grep Name | cut -d: -f2 | xargs)
-    if pactl set-default-sink "$device"; then
-      notify-send -r 91190 "Activated: $desc"
-    else
-      notify-send -r 91190 "Error activating $desc"
-    fi
-  else
-    pactl list sinks | grep -ie "Description:" | awk -F ': ' '{print $2}' | sort
-  fi
+  exec kitty wiremix -v output
 }
 
 # Evaluate device option
-while getopts iops: DeviceOpt; do
+while getopts iops DeviceOpt; do
   case "${DeviceOpt}" in
   i)
     nsink=$(pactl list sources short | awk '{print $2}')
@@ -101,9 +92,8 @@ while getopts iops: DeviceOpt; do
     srce="${nsink}"
     ;;
   s)
-    # Select an output device
-    select_output "$@"
-    exit
+    # Select an output device in wiremix
+    select_output
     ;;
   *) print_error ;;
   esac
