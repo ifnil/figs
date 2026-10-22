@@ -108,3 +108,10 @@ eval "$(pyenv init - zsh)"
 # ocaml
 [[ ! -r '/home/june/.opam/opam-init/init.zsh' ]] \
   || source '/home/june/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
+
+# bun completions
+[ -s "/home/june/.bun/_bun" ] && source "/home/june/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

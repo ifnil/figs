@@ -21,8 +21,12 @@ exec dunst
 
 exec gsettings set org.gnome.desktop.interface gtk-theme "Arc-Dark"
 exec gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
+# gtk3 apps take the cursor from here, not from XCURSOR_*
+exec gsettings set org.gnome.desktop.interface cursor-theme "BreezeX-RosePine-Linux"
+exec gsettings set org.gnome.desktop.interface cursor-size 28
 
 exec_always autotiling-rs
+exec_always xrandr --output XWAYLAND0 --primary
 
 default_border          pixel 3
 default_floating_border pixel 3
@@ -52,6 +56,9 @@ input type:touchpad {
 input "2:10:TPPS/2_Elan_TrackPoint" {
     pointer_accel -0.5
 }
+
+# also exports XCURSOR_THEME/XCURSOR_SIZE to everything sway spawns
+seat * xcursor_theme BreezeX-RosePine-Linux 28
 
 for_window [app_id="^dunst$"] floating enable
 for_window [class="^Godot$"]  floating enable

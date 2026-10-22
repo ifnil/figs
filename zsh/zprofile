@@ -1,0 +1,10 @@
+# login-shell env. ly's /etc/ly/setup.sh sources this before exec'ing the
+# session, so sway (and everything it spawns) inherits it.
+export PATH="$HOME/.local/bin:$PATH"
+export QT_QPA_PLATFORMTHEME=qt6ct
+
+# the session bus (openrc user service, started by pam_openrc) listens here.
+# libdbus/GLib find it on their own, but chromium/electron (brave, signal,
+# discord, ...) set DBUS_SESSION_BUS_ADDRESS=disabled: when it's unset — no
+# keyring, no notifications, and every child they launch inherits it.
+[ -n "$XDG_RUNTIME_DIR" ] && export DBUS_SESSION_BUS_ADDRESS="${DBUS_SESSION_BUS_ADDRESS:-unix:path=$XDG_RUNTIME_DIR/bus}"
