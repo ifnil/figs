@@ -45,5 +45,5 @@ require("lazy").setup({
 	checker = { enabled = true },
 })
 
-dofile(vim.fn.expand("~/code/llm/diary/nvim/diary.lua"))
+-- dofile(vim.fn.expand("~/code/llm/diary/nvim/diary.lua"))
 vim.cmd("colorscheme gum")

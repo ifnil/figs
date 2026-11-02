@@ -15,6 +15,8 @@ set $accent #bb80e966
 set $unfocd #5f676a
 
 exec dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+# hand off to the daemon pam_gnome_keyring started; it quits after 120s if nothing does
+exec gnome-keyring-daemon --start --components=secrets
 exec awww-daemon
 exec qs -c topbar
 exec dunst
