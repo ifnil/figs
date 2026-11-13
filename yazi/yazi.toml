@@ -5,17 +5,15 @@ ratio = [1, 3, 4]
 max_height = 60000
 max_width = 60000
 
-[plugin]
-prepend_previewers = [
-  { mime = "application/{*zip,tar,bzip2,7z*,rar,xz,zstd,java-archive}", run  = "ouch" },
-  { mime = "application/{x-executable,x-pie-executable,x-sharedlib,x-object,x-mach-binary,x-dosexec,vnd.microsoft.portable-executable}", run = "radare" },
-]
-
-[opener]
-extract = [
-	{ run = 'ouch d -y %*', desc = "Extract here with ouch", for = "windows" },
-	{ run = 'ouch d -y "$@"', desc = "Extract here with ouch", for = "unix" },
-]
-
 [tasks]
 image_bound = [ 65535, 65535 ]
+
+[opener]
+setwall = [
+  { run = 'awww img %s', desc = "Set wallpaper (awww)", block = true }
+]
+
+[open]
+prepend_rules = [
+  { mime = "image/*", use = ["open", "reveal", "setwall"] }
+]

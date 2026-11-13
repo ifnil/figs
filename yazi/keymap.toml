@@ -27,3 +27,4 @@ desc = "Delete all bookmarks"
 on   = [ "g", "i" ]
 run  = "plugin lazygit"
 desc = "run lazygit"
+
