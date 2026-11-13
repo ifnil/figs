@@ -5,17 +5,13 @@ set $alt  Mod1
 set $term kitty
 set $rofi rofi -show combi
 
-# set $accent #4f2833
-# set $accent #2bfba6
-# set $accent #e7b39f
-# set $accent #fc9e6555
-# set $accent #65fcc877
-
 set $accent #bb80e966
 set $unfocd #5f676a
 
+set $gaps_inner 6
+set $gaps_outer 4
+
 exec dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-# hand off to the daemon pam_gnome_keyring started; it quits after 120s if nothing does
 exec gnome-keyring-daemon --start --components=secrets
 exec awww-daemon
 exec qs -c topbar
@@ -23,7 +19,6 @@ exec dunst
 
 exec gsettings set org.gnome.desktop.interface gtk-theme "Arc-Dark"
 exec gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
-# gtk3 apps take the cursor from here, not from XCURSOR_*
 exec gsettings set org.gnome.desktop.interface cursor-theme "BreezeX-RosePine-Linux"
 exec gsettings set org.gnome.desktop.interface cursor-size 28
 
@@ -33,8 +28,8 @@ exec_always xrandr --output XWAYLAND0 --primary
 default_border          pixel 3
 default_floating_border pixel 3
 
-gaps inner  6
-gaps outer  4
+gaps inner  $gaps_inner
+gaps outer  $gaps_outer
 gaps top   -5
 
 # class                 border    bg        text      indicator childborder
@@ -144,6 +139,10 @@ bindsym $mod+Shift+space floating   toggle
 bindsym $mod+w           layout     toggle tabbed split
 bindsym $mod+f           fullscreen toggle
 bindsym $mod+e           layout     toggle split
+
+bindsym $alt+minus      gaps inner current minus 6
+bindsym $alt+equal      gaps inner current plus 6
+bindsym $alt+grave      gaps inner all set $gaps_inner
 
 include ~/.config/sway/submaps.conf
 include ~/.config/sway/hosts/$(hostname).conf
